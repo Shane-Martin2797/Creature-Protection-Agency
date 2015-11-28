@@ -52,7 +52,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		curNumBait++;
 	}
-
+	
 	Vector3 CalculateTrajectory (Vector3 origin, Vector3 destination)
 	{
 		Vector3 diff = destination - origin;

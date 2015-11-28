@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baitPrefab: {fileID: 11416744, guid: 0192f118b51954c41a48b92995f5c5a5, type: 2}
-  baitThrowTimeInterval: 1
+  baitThrowTimeInterval: 3
   timeForBaitToHitGround: 1
   maxBait: 5
 --- !u!1 &1265726691

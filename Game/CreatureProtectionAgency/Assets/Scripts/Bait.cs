@@ -20,7 +20,7 @@ public class Bait : BaitController
 		}
 	}
 
-	void Eat () {
+	public override void Eat () {
 		foodPoints--;
 
 		if (foodPoints <= 0) 
@@ -32,5 +32,7 @@ public class Bait : BaitController
 	void OnDestroy () 
 	{
 		UpdateBait ();
+
+		RemoveFromList ();
 	}
 }

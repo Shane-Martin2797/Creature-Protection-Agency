@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class PlayerController : SingletonBehaviour<PlayerController> 
 {
-
+	public static List<BaitController> activeList;
+	
 	public Bait baitPrefab;
 
 	public float baitThrowTimeInterval;
@@ -21,7 +23,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	{
 	//	Cursor.visible = false;
 		Bait.UpdateBait += UpdateBait;
-
+		activeList = new List<BaitController> ();
     }
 
 	void UpdateBait ()

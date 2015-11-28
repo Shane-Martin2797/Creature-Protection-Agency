@@ -1,25 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Animal : MonoBehaviour
-{
-	public void Stun (float stunTime)
-	{
-		//apply the stun time
-	}
-}
-
-public class Trap : MonoBehaviour 
+public class Trap : BaitController 
 {
 	public float stunTime;
 
 	void OnTriggerEnter (Collider col)
 	{
-		Activate (col.GetComponent<Animal>());
+		if (col.gameObject.tag == "Creature") {
+			Activate (col.GetComponent<Creature> ());
+		}
 	}
 
-	void Activate (Animal animal) 
+	void Activate (Creature creature) 
 	{
-		animal.Stun (stunTime);
+		creature.Stun (stunTime);
+
+		RemoveFromList ();
 	}
 }

@@ -62,6 +62,7 @@ public class Creature : MonoBehaviour
 				{
 					distance += (navigator.path.corners[index2] - navigator.path.corners[index2 - 1]).magnitude;
 				}
+				pathLengths[index] = distance;
 			}
 			else
 			{

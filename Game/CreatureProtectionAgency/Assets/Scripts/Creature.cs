@@ -15,31 +15,38 @@ public class Creature : MonoBehaviour
 
 	BaitController target;
 
+	float stunTime;
+	
 	void Awake ()
 	{
 		navigator = GetComponent<NavMeshAgent> ();
 	}
 
-	public void Stun (float stunTime)
+	public void Stun (float _stunTime)
 	{
 		//apply the stun time
+		stunTime = _stunTime;
 	}
 
 	void Update () 
 	{
-		if (numberOfActiveBaits != PlayerController.activeList.Count) 
-		{
-			FindClosestPath ();
+		if (stunTime < 0) {
+			if (numberOfActiveBaits != PlayerController.activeList.Count) {
+				FindClosestPath ();
 
-			numberOfActiveBaits = PlayerController.activeList.Count;
-		}
-
-		if (target != null) 
-		{
-			if((target.transform.position - transform.position).magnitude < 3.0f)
-			{
-				target.Eat();
+				numberOfActiveBaits = PlayerController.activeList.Count;
 			}
+
+			if (target != null) {
+				navigator.SetDestination(target.transform.position);
+				
+				if ((target.transform.position - transform.position).magnitude < 3.0f) {
+					target.Eat ();
+				}
+			}
+		} else 
+		{
+			stunTime -= Time.deltaTime;
 		}
 	}
 
@@ -79,7 +86,6 @@ public class Creature : MonoBehaviour
 		{
 			if(pathLengths[index] == arrangeablePathLengths[0])
 			{
-				navigator.SetDestination(PlayerController.activeList[index].transform.position);
 				target = PlayerController.activeList[index];
 				break;
 			}

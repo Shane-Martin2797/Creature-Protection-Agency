@@ -59,11 +59,11 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	{
 		Vector3 diff = destination - origin;
 
-		float initialVelocity = (destination.y + -Physics.gravity.y * 0.5f * Mathf.Pow (timeForBaitToHitGround, 2) - origin.y) / timeForBaitToHitGround;
+		float initialVerticalVelocity = (destination.y + -Physics.gravity.y * 0.5f * Mathf.Pow (timeForBaitToHitGround, 2) - origin.y) / timeForBaitToHitGround;
 
 		diff /= timeForBaitToHitGround;
 
-		diff.y = initialVelocity;
+		diff.y = initialVerticalVelocity;
 
 		return diff;
 	}

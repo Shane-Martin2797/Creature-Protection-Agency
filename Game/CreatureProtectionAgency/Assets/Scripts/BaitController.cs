@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 public abstract class BaitController : MonoBehaviour
 {
+	public delegate void BaitEaten ();
+	
+	public static event BaitEaten UpdateBait;	
+
+
 	bool hitGround = false;
 
 	void Awake ()
@@ -26,6 +31,13 @@ public abstract class BaitController : MonoBehaviour
 
 			PlayerController.activeList.Add(this);
 		}
+	}
+
+	void OnDestroy () 
+	{
+		UpdateBait ();
+		
+		RemoveFromList ();
 	}
 
 	protected void RemoveFromList ()

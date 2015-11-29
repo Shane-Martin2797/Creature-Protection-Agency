@@ -16,6 +16,6 @@ public class Trap : BaitController
 	{
 		creature.Stun (stunTime);
 
-		RemoveFromList ();
-	}
+		Destroy (this.gameObject);
+	}	
 }

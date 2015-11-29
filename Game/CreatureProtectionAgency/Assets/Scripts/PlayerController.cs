@@ -18,7 +18,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	public int maxBait = 5;
 
 	int curNumBait = 0;
-
+	
 	protected override void OnSingletonAwake ()
 	{
 	//	Cursor.visible = false;
@@ -33,7 +33,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 	void Update () 
 	{
-		if (curNumBait < maxBait && Input.GetKeyDown (KeyCode.Mouse0) && (lastThrow == null || (DateTime.Now - lastThrow).Seconds > baitThrowTimeInterval)) 
+		if (curNumBait < maxBait && Input.GetKeyDown (KeyCode.Mouse0) && (lastThrow == null || (DateTime.Now - lastThrow).Seconds >= baitThrowTimeInterval)) 
 		{
 			ThrowBait();
 

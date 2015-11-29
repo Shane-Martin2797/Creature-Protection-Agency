@@ -55,27 +55,30 @@ public class Creature : MonoBehaviour
 		float[] pathLengths = new float[PlayerController.activeList.Count];
 		paths = new NavMeshPath[PlayerController.activeList.Count];
 		List<float> arrangeablePathLengths = new List<float>();
+
 		for (int index = 0; index < PlayerController.activeList.Count; ++index) 
 		{
+			paths[index] = new NavMeshPath();
+			if(!NavMesh.CalculatePath(transform.position, PlayerController.activeList[index].transform.position, NavMesh.AllAreas, paths[index]))
+			{
+				paths[index] = null;
+			}
+
 			arrangeablePathLengths.Add(0);
 
-			if(navigator.SetDestination(PlayerController.activeList[index].transform.position))
+			if(paths[index] != null)
 			{
-				paths[index] = navigator.path;
+				float distance = 0;
 
-				float distance = (navigator.path.corners[0] - transform.position).magnitude;
-
-				for(int index2 = 1; index2 < navigator.path.corners.Length; ++index2)
+				for(int index2 = 1; index2 < paths[index].corners.Length; ++index2)
 				{
-					distance += (navigator.path.corners[index2] - navigator.path.corners[index2 - 1]).magnitude;
+					distance += (paths[index].corners[index2] - paths[index].corners[index2 - 1]).magnitude;
 				}
 				pathLengths[index] = distance;
 			}
 			else
 			{
 				pathLengths[index] = float.MaxValue;
-
-				paths[index] = null;
 			}
 			arrangeablePathLengths[index] = pathLengths[index];
 		}

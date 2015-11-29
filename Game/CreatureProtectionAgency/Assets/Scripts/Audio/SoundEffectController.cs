@@ -46,18 +46,17 @@ public class SoundEffectController : SingletonBehaviour<SoundEffectController>
     public void PlaySoundEffect(AudioClip audioClip, Vector3 locationOfSound)
     {
         //Creates a gameObject for the audioSource to be added to.
-        GameObject audioSource = GameObject.CreatePrimitive(PrimitiveType.Plane);
+		GameObject audioSource = GameObject.CreatePrimitive (PrimitiveType.Cube);//new GameObject ();
 
         //Sets the position of the GameObject
         audioSource.transform.position = locationOfSound;
         
-        //Plays a single shot of the audio clip
-        audioSource.gameObject.GetComponent<Renderer>().enabled = false;
-
         //Adds an AudioSource and plays one shot of the audio clip.
         audioSource.AddComponent<AudioSource>();
         audioSource.GetComponent<AudioSource>().PlayOneShot(audioClip/*, sfxVolume*/);
 
+		audioSource.transform.SetParent (this.transform);
+		
         //Destroys the AudioSource GameObject after playing the sound effect.
         Destroy(audioSource, audioClip.length);
     }

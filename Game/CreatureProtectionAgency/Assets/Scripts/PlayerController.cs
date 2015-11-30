@@ -3,9 +3,10 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class PlayerController : SingletonBehaviour<PlayerController> 
+public class PlayerController : SingletonBehaviour<PlayerController>
 {
 	public static List<BaitController> activeList;
+	public List<Creature> creatureList = new List<Creature> ();
 	
 	public Bait baitPrefab;
 
@@ -21,27 +22,26 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	
 	protected override void OnSingletonAwake ()
 	{
-	//	Cursor.visible = false;
+		//	Cursor.visible = false;
 		Bait.UpdateBait += UpdateBait;
 		activeList = new List<BaitController> ();
-    }
+	}
 
 	void UpdateBait ()
 	{
 		curNumBait--;
 	}
 
-	void Update () 
+	void Update ()
 	{
-		if (curNumBait < maxBait && Input.GetKeyDown (KeyCode.Mouse0) && (lastThrow == null || (DateTime.Now - lastThrow).Seconds >= baitThrowTimeInterval)) 
-		{
-			ThrowBait();
+		if (curNumBait < maxBait && Input.GetKeyDown (KeyCode.Mouse0) && (lastThrow == null || (DateTime.Now - lastThrow).Seconds >= baitThrowTimeInterval)) {
+			ThrowBait ();
 
 			lastThrow = DateTime.Now;
 		}
 	}
 
-	void ThrowBait () 
+	void ThrowBait ()
 	{
 		Bait bait = Instantiate (baitPrefab, transform.position, Quaternion.identity) as Bait;
 

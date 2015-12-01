@@ -23,6 +23,7 @@ public abstract class EnemyController : MonoBehaviour
 	
 	//Used for the object the player is spawning to attack
 	public GameObject attackObject;
+	
 	//The point at which this object will be spawned
 	public Transform attackObjectSpawnPoint;
 	

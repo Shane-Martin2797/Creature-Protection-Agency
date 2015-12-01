@@ -12,7 +12,7 @@ public class Enemy_SharpShooter : EnemyController
 	
 	public override void Attack ()
 	{		
-		GameObject bullet = Instantiate (attackObject, attackObjectSpawnPoint, transform.rotation);
+		GameObject bullet = Instantiate (attackObject, attackObjectSpawnPoint.position, transform.rotation) as GameObject;
 		Vector3 rot = bullet.transform.localEulerAngles;
 		if (Random.value <= (accuracy / deltaPercent)) {
 			rot.z += Random.Range (-maxBulletDispersion, maxBulletDispersion + 1);

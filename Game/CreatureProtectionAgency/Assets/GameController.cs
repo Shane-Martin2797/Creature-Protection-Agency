@@ -24,6 +24,7 @@ public class GameController : SingletonBehaviour<GameController>
 
 	void Start () 
 	{
+		Time.timeScale = 0;
 		BuildFSM ();
 
 		ChangeOverlay (GameStateEnum.gameClick);
@@ -36,8 +37,9 @@ public class GameController : SingletonBehaviour<GameController>
 		if (Input.GetKeyDown (KeyCode.Mouse0)) 
 		{
 			ChangeOverlay(GameStateEnum.game);
+			Time.timeScale = 1;
 		}
-		timer -= Time.deltaTime;
+		timer -= Time.unscaledDeltaTime;
 		if (timer < 0) 
 		{
 			ChangeOverlay(GameStateEnum.gameOver);

@@ -53,6 +53,8 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		bait.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
 
+		bait.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f;
+
 		curNumBait++;
 	}
 	

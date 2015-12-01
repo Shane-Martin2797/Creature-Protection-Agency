@@ -5,10 +5,15 @@ using System.Collections.Generic;
 public abstract class EnemyController : MonoBehaviour
 {
 	
-	private FSM<EnemyController> fsm;
-	
+	public FSM<EnemyController> fsm;
+
+	public NavMeshAgent navAgent;
+
 	//Stats of the Hunters
 	public float movementSpeed;
+	
+	//Time spent in idle state before going back into movement
+	public float idleTime;
 	
 	//Cooldown time between attacks
 	public float cooldownTime;
@@ -17,8 +22,6 @@ public abstract class EnemyController : MonoBehaviour
 	//For ability to detect the Tasmanian Tigers
 	public float visionCone;
 	public float visionDistance;
-
-	public NavMeshAgent navAgent;
 	
 	//This is the creature it targets
 	public Creature targetCreature;
@@ -28,13 +31,15 @@ public abstract class EnemyController : MonoBehaviour
 	
 	//The point at which this object will be spawned
 	public Transform attackObjectSpawnPoint;
-	
-	//The position the enemy is heading to
-	public Vector3 targetPosition;
-	
+		
 	//Abstract Methods
 	public abstract void Attack ();
 	public abstract void Movement ();
+	
+	//How close the poacher has to be to his waypoint before he can re-select a waypoint/go back to idle.
+	public float waypointSoftEdge = 0f;
+	//Checks if the poacher has selected a position yet.
+	public bool gotPos;
 	
 	//Virtual Methods
 	public virtual void BuildFSM ()
@@ -50,8 +55,6 @@ public abstract class EnemyController : MonoBehaviour
 	public virtual void Awake ()
 	{
 		BuildFSM ();
-
-		navAgent = GetComponent<NavMeshAgent> ();
 	}
 	
 	
@@ -70,6 +73,8 @@ public abstract class EnemyController : MonoBehaviour
 		fsm.Update ();
 		if (targetCreature == null) {
 			Target ();
+		} else {
+			LookAt (targetCreature.gameObject);
 		}
 		if (cooldownTimer > 0) {
 			cooldownTimer -= Time.deltaTime;
@@ -105,41 +110,59 @@ public abstract class EnemyController : MonoBehaviour
 		float distance = Vector3.Distance (transform.position, creature.transform.position);
 		//If the distance is further than we can see then return
 		if (distance > visionDistance) {
+			Debug.Log ("Distance is: " + distance + ". I cannot see that far");
 			return;
 		}
 		
 		Vector3 direction = (creature.transform.position - transform.position).normalized;
+		//This y direction needs to be cleaned up
+		//It needs to be able to ignore y for the dot product and
+		//re-use it for the ray cast
+		float y_direction = direction.y;
+		direction.y = 0;
 		
 		float dot = Vector3.Dot (transform.up, direction);
 		float cone = Mathf.Cos (visionCone / 2 * Mathf.Deg2Rad);
 		
 		//If they are not within the cone of vision then return
 		if (dot < cone) {
+			Debug.Log ("The dot product is: " + dot + ". My vision cone is: " + cone);
 			return;
 		}
+		direction.y = y_direction;
 		
 		//Stops the raycast from hitting triggers. When downloaded on windows it may become:
 		//Physics2D.raycastHitTriggers = false;
-		Physics2D.raycastsHitTriggers = false;
+		Physics.queriesHitTriggers = false;
 		
 		//Sends out a raycast from where the attack point is, in the direction to the creature.
-		RaycastHit2D hit = Physics2D.Raycast (attackObjectSpawnPoint.position, direction, visionDistance);
+		RaycastHit hit;
+		Physics.Raycast (attackObjectSpawnPoint.position, direction, out hit, visionDistance);
 		
 		//If we hit nothing with the raycast then break
-		if (hit == null) {
+		if (hit.collider == null) {
+			Debug.Log ("I didn't hit anything with the raycast");
 			return;
 		}
 		//If the gameobject we hit is not equal to the object we are checking for then return.
-		if (hit.collider != null && hit.collider.gameObject != creature.gameObject) {
+		if (hit.collider.gameObject != creature.gameObject) {
+			Debug.Log ("I hit something, but it definitely wasn't the target");
 			return;
 		}
 		//Set our target to the creature we are currently checking
 		targetCreature = creature;
 		
-		//This is the angle from the enemy to the targeted creature.
-		float angleValue = (Mathf.Atan2 (direction.x, direction.y) * Mathf.Rad2Deg) + 180;
-		//This sets our angle to facing the creature.
-		transform.localEulerAngles = new Vector3 (0, 0, angleValue);
+		LookAt (creature.gameObject);
 	}
-	
+	void LookAt (GameObject gameObj)
+	{
+		Debug.Log (gameObj.transform.position);
+		Vector3 direction = (gameObj.transform.position - transform.position).normalized;
+		
+		//This is the angle from the enemy to the targeted creature.
+		float angleValue = -(Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg) + 90;
+		
+		//This sets our angle to facing the creature.
+		transform.localEulerAngles = new Vector3 (0, angleValue, 0);
+	}
 }

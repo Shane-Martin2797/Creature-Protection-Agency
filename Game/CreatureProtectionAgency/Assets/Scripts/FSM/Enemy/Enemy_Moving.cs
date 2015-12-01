@@ -11,12 +11,11 @@ public class Enemy_Moving : FSMState<EnemyController>
 	
 	public override void Update ()
 	{
-		base.Update ();
+	//	base.Update ();
 		fsm.context.Movement ();
-        //if (fsm.context.targetPosition == null) 
-        //{
-        //    fsm.Transition (EnemyEvents.Enemy_State_Idle);
-        //}
+		if (fsm.context.targetPosition == null) {
+			fsm.Transition (EnemyEvents.Enemy_State_Idle);
+		}
 	}
 
 }

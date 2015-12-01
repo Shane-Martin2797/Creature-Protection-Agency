@@ -15,16 +15,14 @@ public class Enemy_Tracking : FSMState<EnemyController>
 	{
 		base.Update ();
 		Track ();
-		if (false) 
-        {
+		if (false) {
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		}
 	}
 	
 	void Track ()
 	{
-		if (false) 
-        {
+		if (false) {
 			fsm.Transition (EnemyEvents.Enemy_State_Attacking);
 		}
 	}

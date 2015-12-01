@@ -6,7 +6,21 @@ public class Bait : BaitController
 	/// <summary>
 	/// The amount of points this bait has remaining that will be reduced when eaten
 	/// </summary>
-	public int foodPoints;
+	public float foodPoints;
+	float initialFoodPoints;
+
+	Material _material;
+
+	Color initialColour;
+
+	void Start ()
+	{
+		initialFoodPoints = foodPoints;
+
+		_material = GetComponent<Renderer> ().material;
+
+		initialColour = _material.color;
+	}
 
 	void Update () 
 	{
@@ -16,8 +30,13 @@ public class Bait : BaitController
 		}
 	}
 
+	float colourMag = 1.0f;
+
 	public override void Eat () {
-		foodPoints--;
+		foodPoints -= Time.deltaTime;
+
+
+		_material.color = initialColour * foodPoints / initialFoodPoints;
 
 		if (foodPoints <= 0) 
 		{

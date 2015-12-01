@@ -29,8 +29,8 @@ public class GameController : SingletonBehaviour<GameController>
 
 		ChangeOverlay (GameStateEnum.gameClick);
 	}
-
-	float timer = 300.0f;
+	[HideInInspector]
+	public float timer = 300.0f;
 
 	void Update ()
 	{

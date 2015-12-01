@@ -23,6 +23,10 @@ public class Enemy_SharpShooter : EnemyController
 			Debug.LogError ("There are no waypoints set for the Sharp-Shooter's movement");
 		}
 	}
+	public override void Update ()
+	{
+		base.Update ();
+	}
 
 	public override void Attack ()
 	{		
@@ -46,11 +50,11 @@ public class Enemy_SharpShooter : EnemyController
 			}
 			gotPos = true;
 		}
-	
-		if (Vector3.Distance (transform.position, movementWaypoints [currentWaypoint]) <= waypointSoftEdge) {
+		Vector3 targetPos = new Vector3 (movementWaypoints [currentWaypoint].x, transform.position.y, movementWaypoints [currentWaypoint].z);
+		if (Vector3.Distance (transform.position, targetPos) <= waypointSoftEdge) {
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		} else {
-			navAgent.SetDestination (new Vector3 (movementWaypoints [currentWaypoint].x, transform.position.y, movementWaypoints [currentWaypoint].z));
+			navAgent.SetDestination (targetPos);
 		}
 	}
 }

@@ -96,9 +96,10 @@ public abstract class EnemyController : MonoBehaviour
 			for (int i = 0; i < count; ++i) {
 				if (targetCreature == null) {
 					CheckCreature (tempList [i]);
-				} else {
+				} 
+				if (targetCreature != null) {
 					fsm.Transition (EnemyEvents.Enemy_State_Tracking);
-					break;
+					return;
 				}
 			}
 		}

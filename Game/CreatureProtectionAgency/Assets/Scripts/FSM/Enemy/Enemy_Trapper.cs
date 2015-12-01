@@ -29,7 +29,7 @@ public class Enemy_Trapper : EnemyController
 		if (Vector3.Distance (transform.position, currentWaypoint) <= waypointSoftEdge) {
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		} else {
-			navAgent.SetDestination (currentWaypoint);
+			navAgent.SetDestination (new Vector3 (currentWaypoint.x, transform.position.y, currentWaypoint.z));
 		}
 	}
 }

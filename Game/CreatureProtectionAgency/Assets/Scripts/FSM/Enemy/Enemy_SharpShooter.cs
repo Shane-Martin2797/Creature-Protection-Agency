@@ -50,7 +50,7 @@ public class Enemy_SharpShooter : EnemyController
 		if (Vector3.Distance (transform.position, movementWaypoints [currentWaypoint]) <= waypointSoftEdge) {
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		} else {
-			navAgent.SetDestination (movementWaypoints [currentWaypoint]);
+			navAgent.SetDestination (new Vector3 (movementWaypoints [currentWaypoint].x, transform.position.y, movementWaypoints [currentWaypoint].z));
 		}
 	}
 }

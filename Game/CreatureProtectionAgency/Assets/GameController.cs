@@ -41,7 +41,12 @@ public class GameController : SingletonBehaviour<GameController>
 		if (timer < 0) 
 		{
 			ChangeOverlay(GameStateEnum.gameOver);
-			Camera.main.gameObject.SetActive(false);
+			//Camera.main.gameObject.SetActive(false);
+
+			if(Input.GetKeyDown(KeyCode.Backspace))
+			{
+				Application.LoadLevel(Application.loadedLevel);
+			}
 		}
 	}
 

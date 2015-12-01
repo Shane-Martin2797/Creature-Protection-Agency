@@ -67,6 +67,9 @@ public abstract class EnemyController : MonoBehaviour
 		if (targetCreature == null) {
 			Target ();
 		}
+		if (cooldownTimer > 0) {
+			cooldownTimer -= Time.deltaTime;
+		}
 	}
 	
 	

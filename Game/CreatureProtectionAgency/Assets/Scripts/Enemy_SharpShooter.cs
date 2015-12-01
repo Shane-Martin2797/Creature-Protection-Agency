@@ -11,14 +11,15 @@ public class Enemy_SharpShooter : EnemyController
 	private float deltaPercent = 100;
 	
 	public override void Attack ()
-	{
-		
+	{		
 		GameObject bullet = Instantiate (attackObject, attackObjectSpawnPoint, transform.rotation);
 		Vector3 rot = bullet.transform.localEulerAngles;
 		if (Random.value <= (accuracy / deltaPercent)) {
 			rot.z += Random.Range (-maxBulletDispersion, maxBulletDispersion + 1);
 		}
 		bullet.transform.localEulerAngles = rot;
+		
+		cooldownTimer = cooldownTime;
 	}
 
 	public override void Movement ()

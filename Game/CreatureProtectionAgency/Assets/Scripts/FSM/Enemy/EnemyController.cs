@@ -109,6 +109,9 @@ public abstract class EnemyController : MonoBehaviour
 		}
 		
 		Vector3 direction = (creature.transform.position - transform.position).normalized;
+		//This y direction needs to be cleaned up
+		//It needs to be able to ignore y for the dot product and
+		//re-use it for the ray cast
 		float y_direction = direction.y;
 		direction.y = 0;
 		

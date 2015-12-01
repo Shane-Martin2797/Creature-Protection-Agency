@@ -17,9 +17,15 @@ public class Creature : MonoBehaviour
 
 	float stunTime;
 	
-	void Awake ()
+	void Start ()
 	{
 		navigator = GetComponent<NavMeshAgent> ();
+		PlayerController.Instance.creatureList.Add (this);
+	}
+
+	void OnDestroy () 
+	{
+		PlayerController.Instance.creatureList.Remove (this);
 	}
 
 	public void Stun (float _stunTime)

@@ -25,6 +25,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		//	Cursor.visible = false;
 		Bait.UpdateBait += UpdateBait;
 		activeList = new List<BaitController> ();
+
 	}
 
 	void UpdateBait ()

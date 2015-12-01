@@ -121,7 +121,7 @@ public abstract class EnemyController : MonoBehaviour
 		float y_direction = direction.y;
 		direction.y = 0;
 		
-		float dot = Vector3.Dot (transform.up, direction);
+		float dot = Vector3.Dot (transform.forward, direction);
 		float cone = Mathf.Cos (visionCone / 2 * Mathf.Deg2Rad);
 		
 		//If they are not within the cone of vision then return
@@ -133,7 +133,7 @@ public abstract class EnemyController : MonoBehaviour
 		
 		//Stops the raycast from hitting triggers. When downloaded on windows it may become:
 		//Physics2D.raycastHitTriggers = false;
-		Physics.queriesHitTriggers = false;
+		//Physics.queriesHitTriggers = false;
 		
 		//Sends out a raycast from where the attack point is, in the direction to the creature.
 		RaycastHit hit;

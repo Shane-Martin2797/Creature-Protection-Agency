@@ -13,10 +13,10 @@ public class Enemy_Moving : FSMState<EnemyController>
 	{
 		base.Update ();
 		fsm.context.Movement ();
-		if (fsm.context.targetPosition == null) 
-        {
-			fsm.Transition (EnemyEvents.Enemy_State_Idle);
-		}
+        //if (fsm.context.targetPosition == null) 
+        //{
+        //    fsm.Transition (EnemyEvents.Enemy_State_Idle);
+        //}
 	}
 
 }

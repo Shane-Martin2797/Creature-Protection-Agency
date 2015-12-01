@@ -6,10 +6,10 @@ public class FSM<TContext>
     where TContext : class //TContext is the object this FSM will be attached to
 {
     //Storing each state, and what type is maps to
-    private Dictionary<System.Type, FSMState<TContext>> states = new Dictionary<System.Type, FSMState<TContext>>();
+    public Dictionary<System.Type, FSMState<TContext>> states = new Dictionary<System.Type, FSMState<TContext>>();
 
     //The current state of the FSM
-    private FSMState<TContext> currentState;
+    public FSMState<TContext> currentState;
 
     //If we should log all of the transition for this FSM
     public bool enableLogging = false;

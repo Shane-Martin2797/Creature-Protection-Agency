@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy_Trapper : EnemyController
 {
 	public float waypointSoftEdge = 0f;
-	public Vector3 currentWaypoint = 0;
+	public Vector3 currentWaypoint = Vector3.zero;
 
 	public float timeIdleAtWaypoint = 0f;
 	public float idleTimeRemaining = 0f;

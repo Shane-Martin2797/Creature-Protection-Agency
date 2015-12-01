@@ -354,6 +354,7 @@ GameObject:
   - 114: {fileID: 842190006}
   - 65: {fileID: 842190008}
   - 195: {fileID: 842190011}
+  - 114: {fileID: 842190012}
   m_Layer: 0
   m_Name: enemy_sharpshooter
   m_TagString: Untagged
@@ -367,7 +368,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842190005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02cd49cb37ab84ff28052f0cc2960a38, type: 3}
   m_Name: 
@@ -468,6 +469,35 @@ NavMeshAgent:
   m_BaseOffset: .5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &842190012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842190005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c289ba096c0f44b6ab80becbdb61811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navAgent: {fileID: 842190011}
+  movementSpeed: 10
+  cooldownTime: 5
+  cooldownTimer: 0
+  visionCone: 0
+  visionDistance: 0
+  targetCreature: {fileID: 0}
+  attackObject: {fileID: 0}
+  attackObjectSpawnPoint: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  waypointSoftEdge: .100000001
+  currentWaypoint: {x: 0, y: 0, z: 0}
+  timeIdleAtWaypoint: 1
+  idleTimeRemaining: 0
+  minX: -2
+  maxX: 2
+  minZ: -2
+  maxZ: 2
 --- !u!1 &1267356704
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,9 @@ public abstract class EnemyController : MonoBehaviour
 {
 	
 	private FSM<EnemyController> fsm;
-	
+
+    public NavMeshAgent navAgent;
+
 	//Stats of the Hunters
 	public float movementSpeed;
 	

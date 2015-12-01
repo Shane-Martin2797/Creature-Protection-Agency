@@ -11,11 +11,17 @@ public class Enemy_SharpShooter : EnemyController
 	private float deltaPercent = 100;
 
     public Vector3[] movementWaypoints;
-    public int currentWaypoint;
-    public int previousWaypoint;
+    public float waypointSoftEdge = 0f;
+    public int currentWaypoint = 0;
+    public int previousWaypoint = 0;
 
+    public float timeIdleAtWaypoint = 0f;
+    public float idleTimeRemaining = 0f;
+    
     public override void Start()
     {
+        base.Start();
+
         if (movementWaypoints.Length <= 0)
         {
             Debug.LogError("There are no waypoints set for the Sharp-Shooter's movement");
@@ -34,8 +40,38 @@ public class Enemy_SharpShooter : EnemyController
 		cooldownTimer = cooldownTime;
 	}
 
+
+    private bool timerReset = false;
+
 	public override void Movement ()
 	{
-        
+        if (Vector3.Distance(transform.position, movementWaypoints[currentWaypoint]) <= waypointSoftEdge)
+        {
+            if ((idleTimeRemaining <= 0) && !timerReset)
+            {
+                idleTimeRemaining = timeIdleAtWaypoint;
+                timerReset = true;
+            }
+            else
+            {
+                idleTimeRemaining -= Time.deltaTime;
+            }
+
+            if ((idleTimeRemaining <= 0) && timerReset)
+            {
+                previousWaypoint = currentWaypoint;
+
+                while (currentWaypoint == previousWaypoint)
+                {
+                    currentWaypoint = Random.Range(0, movementWaypoints.Length);
+                }
+
+                timerReset = false;
+            }
+        }
+        else
+        {
+            navAgent.SetDestination(movementWaypoints[currentWaypoint]);
+        }
 	}
 }

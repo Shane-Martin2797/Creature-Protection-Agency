@@ -17,6 +17,8 @@ public class Enemy_SharpShooter : EnemyController
 
     public float timeIdleAtWaypoint = 0f;
     public float idleTimeRemaining = 0f;
+
+    private bool timerReset = false;
     
     public override void Start()
     {
@@ -39,9 +41,6 @@ public class Enemy_SharpShooter : EnemyController
 		
 		cooldownTimer = cooldownTime;
 	}
-
-
-    private bool timerReset = false;
 
 	public override void Movement ()
 	{
@@ -74,4 +73,41 @@ public class Enemy_SharpShooter : EnemyController
             navAgent.SetDestination(movementWaypoints[currentWaypoint]);
         }
 	}
+
+
+
+    //Movement for the other AI types, will (hopefully) work as soon as the scripts are made.
+    //
+    //
+    //public float minX, maxX;
+    //public float minZ, maxZ;
+    //public Vector3 currentWaypoint;
+    //
+    //
+    //public override void Movement ()
+    //{
+    //    if (Vector3.Distance(transform.position, currentWaypoint) <= waypointSoftEdge)
+    //    {
+    //////////////////// If there is no idle time, this code section can be commented out and the change implementation placed exposed.
+    //        if ((idleTimeRemaining <= 0) && !timerReset)
+    //        {
+    //            idleTimeRemaining = timeIdleAtWaypoint;
+    //            timerReset = true;
+    //        }
+    //        else
+    //        {
+    //            idleTimeRemaining -= Time.deltaTime;
+    //        }
+    //
+    //        if ((idleTimeRemaining <= 0) && timerReset)
+    //        {
+    //            currentWaypoint = new Vector3 (Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
+    //            timerReset = false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        navAgent.SetDestination(currentWaypoint);
+    //    }
+    //}
 }

@@ -187,7 +187,7 @@ MonoBehaviour:
   visionCone: 0
   visionDistance: 0
   targetCreature: {fileID: 0}
-  attackObject: {fileID: 0}
+  attackObject: {fileID: 190808, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
   attackObjectSpawnPoint: {fileID: 473538}
   waypointSoftEdge: .100000001
   gotPos: 0

@@ -16,20 +16,32 @@ public class Enemy_Trapper : EnemyController
 	public override void Attack ()
 	{		
 		GameObject gameObj = Instantiate (attackObject, attackObjectSpawnPoint.position, transform.rotation) as GameObject;
-	}	
+	}
 	
+	public override void Update ()
+	{
+		base.Update ();
+		Debug.Log ("EnemyTrapperUpdate");
+		if (cooldownTimer <= 0) {
+			if (!gotPos) {
+				fsm.Transition (EnemyEvents.Enemy_State_Tracking);
+			}
+		} 
+	}
 	
 	public override void Movement ()
 	{
 		if (!gotPos) {
-			currentWaypoint = new Vector3 (Random.Range (minX, maxX), 0, Random.Range (minZ, maxZ));
+			currentWaypoint = new Vector3 (Random.Range (minX, maxX), transform.position.y, Random.Range (minZ, maxZ));
 			gotPos = true;
 		}
+		
+		currentWaypoint.y = transform.position.y;
 		
 		if (Vector3.Distance (transform.position, currentWaypoint) <= waypointSoftEdge) {
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		} else {
-			navAgent.SetDestination (new Vector3 (currentWaypoint.x, transform.position.y, currentWaypoint.z));
+			navAgent.SetDestination (currentWaypoint);
 		}
 	}
 }

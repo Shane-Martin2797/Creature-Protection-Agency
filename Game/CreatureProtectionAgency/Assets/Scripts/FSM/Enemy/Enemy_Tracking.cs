@@ -30,7 +30,9 @@ public class Enemy_Tracking : FSMState<EnemyController>
 			fsm.Transition (EnemyEvents.Enemy_State_Attacking);
 		} else {
 			//Follow the creature it is tracking
-			context.navAgent.SetDestination (context.targetCreature.transform.position);
+			if (context.targetCreature != null) {
+				context.navAgent.SetDestination (context.targetCreature.transform.position);
+			}
 		}
 	}
 	

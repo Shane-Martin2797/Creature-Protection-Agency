@@ -6,6 +6,8 @@ public static class Scenes
 {
 	public static string level = "Creature Controller";
 	public static string logo = "LogoSplash";
+	public static string Title = "Title";
+	public static string Main = "Main";
 }
 
 public class LogoController : MonoBehaviour 
@@ -35,7 +37,7 @@ public class LogoController : MonoBehaviour
 
 		if (logoTime < 0) 
 		{
-			Application.LoadLevel(Scenes.level);
+			Application.LoadLevel(Scenes.Title);
 		}
 	}
 }

@@ -23,7 +23,6 @@ public class Enemy_Trapper : EnemyController
 	public override void Update ()
 	{
 		base.Update ();
-		Debug.Log ("EnemyTrapperUpdate");
 		if (cooldownTimer <= 0) {
 			if (!gotPos) {
 				fsm.Transition (EnemyEvents.Enemy_State_Tracking);

@@ -19,7 +19,7 @@ public abstract class EnemyController : MonoBehaviour
 	public float visionDistance;
 	
 	//This is the creature it targets
-	private Creature targetCreature;
+	public Creature targetCreature;
 	
 	//Used for the object the player is spawning to attack
 	public GameObject attackObject;
@@ -128,6 +128,11 @@ public abstract class EnemyController : MonoBehaviour
 		}
 		//Set our target to the creature we are currently checking
 		targetCreature = creature;
+		
+		//This is the angle from the enemy to the targeted creature.
+		float angleValue = (Mathf.Atan2 (direction.x, direction.y) * Mathf.Rad2Deg) + 180;
+		//This sets our angle to facing the creature.
+		transform.localEulerAngles = new Vector3 (0, 0, angleValue);
 	}
 	
 }

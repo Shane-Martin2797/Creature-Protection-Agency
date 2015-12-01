@@ -9,11 +9,12 @@ public class Enemy_Moving : FSMState<EnemyController>
 		AddTransition<Enemy_Tracking> (EnemyEvents.Enemy_State_Tracking);
 	} 
 	
-	void Update ()
+	public override void Update ()
 	{
 		base.Update ();
 		fsm.context.Movement ();
-		if (fsm.context.targetPosition == null) {
+		if (fsm.context.targetPosition == null) 
+        {
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		}
 	}

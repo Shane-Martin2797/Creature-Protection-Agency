@@ -9,7 +9,19 @@ public class Enemy_SharpShooter : EnemyController
 	public float maxBulletDispersion;
 	
 	private float deltaPercent = 100;
-	
+
+    public Vector3[] movementWaypoints;
+    public int currentWaypoint;
+    public int previousWaypoint;
+
+    public override void Start()
+    {
+        if (movementWaypoints.Length <= 0)
+        {
+            Debug.LogError("There are no waypoints set for the Sharp-Shooter's movement");
+        }
+    }
+
 	public override void Attack ()
 	{		
 		GameObject bullet = Instantiate (attackObject, attackObjectSpawnPoint.position, transform.rotation) as GameObject;
@@ -24,6 +36,6 @@ public class Enemy_SharpShooter : EnemyController
 
 	public override void Movement ()
 	{
-		
+        
 	}
 }

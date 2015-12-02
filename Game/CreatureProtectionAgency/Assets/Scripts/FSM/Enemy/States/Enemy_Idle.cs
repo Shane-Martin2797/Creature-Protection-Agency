@@ -12,7 +12,15 @@ public class Enemy_Idle : FSMState<EnemyController>
 		AddTransition<Enemy_Moving> (EnemyEvents.Enemy_State_Moving);
 		AddTransition<Enemy_Tracking> (EnemyEvents.Enemy_State_Tracking);
 	}
-	
+	public override void OnEnter ()
+	{
+		if (fsm.context.idleTime <= 0) {
+			delay = delayDefault;
+		} else {
+			delay = fsm.context.idleTime;
+			fsm.context.idleTime = 0;
+		}
+	}
 	public override void Update ()
 	{
 		base.Update ();
@@ -20,20 +28,10 @@ public class Enemy_Idle : FSMState<EnemyController>
 		if (delay <= 0) {
 			delay = delayDefault;
 			if (Random.value <= (percentChance / 100)) {
-				PickTargetPosition ();
+				fsm.Transition (EnemyEvents.Enemy_State_Moving);
 			}
 		} else {
 			delay -= Time.deltaTime;
 		}
-	}
-
-	///<summary>
-	/// This method should choose a position from a list of waypoints for the enemy to travel to.
-	/// </summary>
-	void PickTargetPosition ()
-	{
-		Vector3 pickedPos = Vector3.zero;
-		fsm.context.targetPosition = pickedPos;
-		fsm.Transition (EnemyEvents.Enemy_State_Moving);
 	}
 }

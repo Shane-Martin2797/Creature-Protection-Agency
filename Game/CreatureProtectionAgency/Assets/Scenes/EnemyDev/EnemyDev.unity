@@ -375,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navAgent: {fileID: 842190011}
   movementSpeed: 10
+  idleTime: 0
   cooldownTime: 5
   cooldownTimer: 0
   visionCone: 360
@@ -382,17 +383,15 @@ MonoBehaviour:
   targetCreature: {fileID: 0}
   attackObject: {fileID: 0}
   attackObjectSpawnPoint: {fileID: 1437102445}
-  targetPosition: {x: 0, y: 0, z: 0}
+  waypointSoftEdge: .5
+  gotPos: 0
   accuracy: 40
   maxBulletDispersion: 5
   movementWaypoints:
   - {x: 1, y: 0, z: 2}
   - {x: 2.5, y: 0, z: 1}
-  waypointSoftEdge: .5
   currentWaypoint: 0
   previousWaypoint: 0
-  timeIdleAtWaypoint: 1
-  idleTimeRemaining: 0
 --- !u!23 &842190007
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -482,6 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navAgent: {fileID: 842190011}
   movementSpeed: 10
+  idleTime: 0
   cooldownTime: 5
   cooldownTimer: 0
   visionCone: 0
@@ -489,8 +489,8 @@ MonoBehaviour:
   targetCreature: {fileID: 0}
   attackObject: {fileID: 0}
   attackObjectSpawnPoint: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
   waypointSoftEdge: .100000001
+  gotPos: 0
   currentWaypoint: {x: 0, y: 0, z: 0}
   timeIdleAtWaypoint: 1
   idleTimeRemaining: 0

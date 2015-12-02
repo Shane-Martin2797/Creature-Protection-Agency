@@ -10,25 +10,19 @@ public class Enemy_SharpShooter : EnemyController
 	
 	private float deltaPercent = 100;
 
-    public Vector3[] movementWaypoints;
-    public float waypointSoftEdge = 0f;
-    public int currentWaypoint = 0;
-    public int previousWaypoint = 0;
-
-    public float timeIdleAtWaypoint = 0f;
-    public float idleTimeRemaining = 0f;
-
-    private bool timerReset = false;
+	public Vector3[] movementWaypoints;
+	public int currentWaypoint = 0;
+	public int previousWaypoint = 0;
+	
     
-    public override void Start()
-    {
-        base.Start();
+	public override void Start ()
+	{
+		base.Start ();
 
-        if (movementWaypoints.Length <= 0)
-        {
-            Debug.LogError("There are no waypoints set for the Sharp-Shooter's movement");
-        }
-    }
+		if (movementWaypoints.Length <= 0) {
+			Debug.LogError ("There are no waypoints set for the Sharp-Shooter's movement");
+		}
+	}
 
 	public override void Attack ()
 	{		
@@ -44,70 +38,19 @@ public class Enemy_SharpShooter : EnemyController
 
 	public override void Movement ()
 	{
-        if (Vector3.Distance(transform.position, movementWaypoints[currentWaypoint]) <= waypointSoftEdge)
-        {
-            if ((idleTimeRemaining <= 0) && !timerReset)
-            {
-                idleTimeRemaining = timeIdleAtWaypoint;
-                timerReset = true;
-            }
-            else
-            {
-                idleTimeRemaining -= Time.deltaTime;
-            }
-
-            if ((idleTimeRemaining <= 0) && timerReset)
-            {
-                previousWaypoint = currentWaypoint;
-
-                while (currentWaypoint == previousWaypoint)
-                {
-                    currentWaypoint = Random.Range(0, movementWaypoints.Length);
-                }
-
-                timerReset = false;
-            }
-        }
-        else
-        {
-            navAgent.SetDestination(movementWaypoints[currentWaypoint]);
-        }
+		if (!gotPos) {
+			previousWaypoint = currentWaypoint;
+		
+			while (currentWaypoint == previousWaypoint) {
+				currentWaypoint = Random.Range (0, movementWaypoints.Length);
+			}
+			gotPos = true;
+		}
+	
+		if (Vector3.Distance (transform.position, movementWaypoints [currentWaypoint]) <= waypointSoftEdge) {
+			fsm.Transition (EnemyEvents.Enemy_State_Idle);
+		} else {
+			navAgent.SetDestination (movementWaypoints [currentWaypoint]);
+		}
 	}
-
-
-
-    //Movement for the other AI types, will (hopefully) work as soon as the scripts are made.
-    //
-    //
-    //public float minX, maxX;
-    //public float minZ, maxZ;
-    //public Vector3 currentWaypoint;
-    //
-    //
-    //public override void Movement ()
-    //{
-    //    if (Vector3.Distance(transform.position, currentWaypoint) <= waypointSoftEdge)
-    //    {
-    //////////////////// If there is no idle time, this code section can be commented out and the change implementation placed exposed.
-    //        if ((idleTimeRemaining <= 0) && !timerReset)
-    //        {
-    //            idleTimeRemaining = timeIdleAtWaypoint;
-    //            timerReset = true;
-    //        }
-    //        else
-    //        {
-    //            idleTimeRemaining -= Time.deltaTime;
-    //        }
-    //
-    //        if ((idleTimeRemaining <= 0) && timerReset)
-    //        {
-    //            currentWaypoint = new Vector3 (Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
-    //            timerReset = false;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        navAgent.SetDestination(currentWaypoint);
-    //    }
-    //}
 }

@@ -5,12 +5,15 @@ using System.Collections.Generic;
 public abstract class EnemyController : MonoBehaviour
 {
 	
-	private FSM<EnemyController> fsm;
+	public FSM<EnemyController> fsm;
 
-    public NavMeshAgent navAgent;
+	public NavMeshAgent navAgent;
 
 	//Stats of the Hunters
 	public float movementSpeed;
+	
+	//Time spent in idle state before going back into movement
+	public float idleTime;
 	
 	//Cooldown time between attacks
 	public float cooldownTime;
@@ -28,14 +31,15 @@ public abstract class EnemyController : MonoBehaviour
 	
 	//The point at which this object will be spawned
 	public Transform attackObjectSpawnPoint;
-	
-	//The position the enemy is heading to
-	public Vector3 targetPosition;
-	
+		
 	//Abstract Methods
 	public abstract void Attack ();
 	public abstract void Movement ();
 	
+	//How close the poacher has to be to his waypoint before he can re-select a waypoint/go back to idle.
+	public float waypointSoftEdge = 0f;
+	//Checks if the poacher has selected a position yet.
+	public bool gotPos;
 	
 	//Virtual Methods
 	public virtual void BuildFSM ()

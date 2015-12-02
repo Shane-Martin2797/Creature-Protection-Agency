@@ -33,5 +33,6 @@ public class Enemy_Idle : FSMState<EnemyController>
 		} else {
 			delay -= Time.deltaTime;
 		}
+		Debug.Log ("Update Idle");
 	}
 }

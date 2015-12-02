@@ -24,5 +24,6 @@ public class Enemy_Moving : FSMState<EnemyController>
 	public override void OnExit ()
 	{
 		fsm.context.idleTime = idleTimeFromMoving;
+		context.gotPos = false;
 	}
 }

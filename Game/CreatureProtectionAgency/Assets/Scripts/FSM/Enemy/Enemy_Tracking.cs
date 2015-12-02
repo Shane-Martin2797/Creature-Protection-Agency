@@ -18,7 +18,7 @@ public class Enemy_Tracking : FSMState<EnemyController>
 		Track ();
 		//If the poacher loses sight, count down until he has 'lost' the creature
 		//and return to the idle state for a few seconds.
-		if (false) {
+		if (context.targetCreature == null) {
 			context.idleTime = idleFromTracking;
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		}

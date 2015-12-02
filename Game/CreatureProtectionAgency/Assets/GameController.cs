@@ -47,7 +47,7 @@ public class GameController : SingletonBehaviour<GameController>
 
 			if(Input.GetKeyDown(KeyCode.Backspace))
 			{
-				Application.LoadLevel(Application.loadedLevel);
+				Application.LoadLevel(Scenes.logo);
 			}
 		}
 	}

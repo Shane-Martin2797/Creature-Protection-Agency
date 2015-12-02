@@ -12,9 +12,11 @@ public class Enemy_Attacking : FSMState<EnemyController>
 	public override void OnEnter ()
 	{
 		context.cooldownTimer = context.cooldownTime;
-		fsm.context.Attack ();
 		if (context.targetCreature != null) {
-			context.targetCreature = null;
+			fsm.context.Attack ();
+			if (context.targetCreature != null) {
+				context.targetCreature = null;
+			}
 		}
 		fsm.Transition (EnemyEvents.Enemy_State_Idle);
 	}

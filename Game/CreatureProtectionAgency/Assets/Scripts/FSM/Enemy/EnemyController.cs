@@ -108,6 +108,10 @@ public abstract class EnemyController : MonoBehaviour
 	
 	public virtual void CheckCreature (Creature creature)
 	{
+		if (creature == null){
+			return;
+		}
+
 		float distance = Vector3.Distance (transform.position, creature.transform.position);
 		//If the distance is further than we can see then return
 		if (distance > visionDistance) {

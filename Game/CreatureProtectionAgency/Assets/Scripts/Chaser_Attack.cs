@@ -5,6 +5,7 @@ public class Chaser_Attack : MonoBehaviour
 {
 	public float lifetimeOfAttack = .2f;
 	float timer;
+	public Creature target;
 	
 	void OnTriggerEnter (Collider col)
 	{
@@ -16,7 +17,12 @@ public class Chaser_Attack : MonoBehaviour
 		Creature creature = gameObj.GetComponent<Creature> ();
 		if (creature != null) {
 			//Kills the creature
-			Destroy (creature.gameObject);
+			if (target != null) {
+				if (creature == target) {
+					Destroy (creature.gameObject);
+					target = null;
+				}
+			}
 		}
 	}
 	

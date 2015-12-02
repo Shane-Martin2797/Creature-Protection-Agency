@@ -12,6 +12,10 @@ public class Enemy_Chaser : EnemyController
 	}
 	public override void Attack ()
 	{
+		Chaser_Attack attack = attackObject.GetComponent<Chaser_Attack> ();
+		if (attack != null) {
+			attack.target = GetClosestCreature (PlayerController.Instance.creatureList);
+		}
 		attackObject.SetActive (true);
 		idleTime = idleTimeDef;
 	}
@@ -28,6 +32,10 @@ public class Enemy_Chaser : EnemyController
 		float closestDist = float.MaxValue;
 		int closestCreatureIndex = 0;
 		for (int i = 0; i < creatures.Count; ++i) {
+			if(creatures[i] == null)
+			{
+				continue;
+			}
 			float currDist = Vector3.Distance (transform.position, creatures [i].transform.position);
 			if (currDist < closestDist) {
 				closestDist = currDist;

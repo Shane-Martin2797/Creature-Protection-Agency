@@ -8,13 +8,13 @@ public class BackgroundMusicController : SingletonBehaviour<BackgroundMusicContr
 
     public bool isRandom;
     public AudioSource music;
-    public AudioClip initialClip;
+    public AudioClip loopClip;
     public AudioClip[] musicArray;
 
-    void Start ()
-    {
-        music.PlayOneShot(initialClip);
-    }
+    //void Start ()
+    //{
+    //    music.PlayOneShot(initialClip);
+    //}
 
     void Update ()
     {
@@ -34,7 +34,7 @@ public class BackgroundMusicController : SingletonBehaviour<BackgroundMusicContr
         }
         else
         {
-            music.PlayOneShot(initialClip);
+            music.PlayOneShot(loopClip);
         }
     }
 }

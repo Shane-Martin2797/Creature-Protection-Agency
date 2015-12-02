@@ -11,13 +11,15 @@ public class Enemy_Trapper : EnemyController
 	public override void Start ()
 	{
 		base.Start ();
+
+		cooldownTimer = cooldownTime;
 	}
 
 	public override void Attack ()
 	{		
 		GameObject gameObj = Instantiate (attackObject, attackObjectSpawnPoint.position, transform.rotation) as GameObject;
 	}
-	
+	Vector3 lastPosition;
 	public override void Update ()
 	{
 		base.Update ();
@@ -26,12 +28,31 @@ public class Enemy_Trapper : EnemyController
 				fsm.Transition (EnemyEvents.Enemy_State_Tracking);
 			}
 		} 
+		if (lastPosition == transform.position) 
+		{
+			gotPos = false;
+		}
+		lastPosition = transform.position;
+
 	}
 	
 	public override void Movement ()
 	{
 		if (!gotPos) {
-			currentWaypoint = new Vector3 (Random.Range (minX, maxX), transform.position.y, Random.Range (minZ, maxZ));
+			currentWaypoint = Vector3.up * 1000;
+			NavMeshPath path = new NavMeshPath();
+
+			Vector3 waypointPosition;
+
+			while(currentWaypoint == Vector3.up * 1000)
+			{
+				waypointPosition = new Vector3 (Random.Range (minX, maxX), transform.position.y, Random.Range (minZ, maxZ));
+
+				if(NavMesh.CalculatePath(transform.position, waypointPosition, NavMesh.AllAreas, path))
+				{
+					currentWaypoint = waypointPosition;
+				}
+			}
 			gotPos = true;
 		}
 		

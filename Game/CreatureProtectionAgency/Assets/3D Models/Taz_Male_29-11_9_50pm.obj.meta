@@ -1,26 +1,24 @@
 fileFormatVersion: 2
-guid: 219172ee98546614786a3ce11820af13
-timeCreated: 1448937231
+guid: dcab4e4b9ce96124989cb3f86556d1fb
+timeCreated: 1448937243
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: BezierCircle
-    100002: Camera
-    100004: Lamp
-    100006: NurbsPath
-    100008: //RootNode
-    400000: BezierCircle
-    400002: Camera
-    400004: Lamp
-    400006: NurbsPath
-    400008: //RootNode
-    2300000: BezierCircle
-    2300002: NurbsPath
-    3300000: BezierCircle
-    3300002: NurbsPath
-    4300000: BezierCircle
-    4300002: NurbsPath
+    100000: default
+    100002: default_MeshPart0
+    100004: default_MeshPart1
+    100006: //RootNode
+    400000: default
+    400002: default_MeshPart0
+    400004: default_MeshPart1
+    400006: //RootNode
+    2300000: default_MeshPart0
+    2300002: default_MeshPart1
+    3300000: default_MeshPart0
+    3300002: default_MeshPart1
+    4300000: default_MeshPart0
+    4300002: default_MeshPart1
   materials:
     importMaterials: 1
     materialName: 0

@@ -65,6 +65,7 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
@@ -84,9 +85,6 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!127 &5
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!1 &496169597
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,14 +379,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1706433280}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c34340aed079d4458244a4bca1ee5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRandom: 0
   music: {fileID: 1706433283}
-  initialClip: {fileID: 8300000, guid: 11f950a6704ad0246a07b3c7f0667b2f, type: 3}
+  loopClip: {fileID: 8300000, guid: 11f950a6704ad0246a07b3c7f0667b2f, type: 3}
   musicArray:
   - {fileID: 8300000, guid: 11f950a6704ad0246a07b3c7f0667b2f, type: 3}
   - {fileID: 8300000, guid: ab09f40c072f32044a8a01674929efe1, type: 3}
@@ -419,6 +417,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1

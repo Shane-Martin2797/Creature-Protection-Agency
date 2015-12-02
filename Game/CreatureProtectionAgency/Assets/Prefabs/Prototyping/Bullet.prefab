@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b9495b11c91774488ca80116d73657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunTime: 10
+  stunTime: 5
   speed: 10
   lifetime: 3
 --- !u!1001 &100100000
@@ -141,7 +141,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: stunTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

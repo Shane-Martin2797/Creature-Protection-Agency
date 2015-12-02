@@ -36,12 +36,15 @@ public class Creature : MonoBehaviour
 	{
 		//apply the stun time
 		stunTime = _stunTime;
+
+		navigator.Stop ();
+
+		_renderer.material.color = stunColor;
 	}
 
 	void Update () 
 	{
 		if (stunTime < 0) {
-			_renderer.material.color = originalColor;
 			if (numberOfActiveBaits != PlayerController.activeList.Count) {
 				FindClosestPath ();
 
@@ -55,11 +58,21 @@ public class Creature : MonoBehaviour
 					target.Eat ();
 				}
 			}
+
+			if(target == null)
+			{
+				navigator.SetDestination(transform.position);
+			}
 		} else 
 		{
-			_renderer.material.color = stunColor;
-
 			stunTime -= Time.deltaTime;
+
+			if(stunTime < 0)
+			{
+				navigator.Resume ();
+
+				_renderer.material.color = originalColor;
+			}
 		}
 	}
 
@@ -106,5 +119,9 @@ public class Creature : MonoBehaviour
 				break;
 			}
 		}
+	}
+	void OnDestroy()
+	{
+		PlayerController.Instance.creatureList.Remove (this);
 	}
 }

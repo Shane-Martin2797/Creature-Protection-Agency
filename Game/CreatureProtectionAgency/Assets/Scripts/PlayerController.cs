@@ -53,7 +53,9 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		bait.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
 
-		bait.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f;
+		bait.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
+
+		bait.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
 
 		curNumBait++;
 	}

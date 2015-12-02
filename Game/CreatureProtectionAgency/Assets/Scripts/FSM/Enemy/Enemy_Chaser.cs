@@ -23,12 +23,18 @@ public class Enemy_Chaser : EnemyController
 	public override void Movement ()
 	{
 		if (PlayerController.Instance.creatureList.Count > 0) {
-			navAgent.SetDestination (GetClosestCreature (PlayerController.Instance.creatureList).transform.position);
+			Creature creature = GetClosestCreature (PlayerController.Instance.creatureList);
+			if(creature != null) {
+				navAgent.SetDestination (creature.transform.position);
+			}
 		}
 	}
 	
 	Creature GetClosestCreature (List<Creature> creatures)
 	{
+		if (creatures.Count == 0) {
+			return null;
+		}
 		float closestDist = float.MaxValue;
 		int closestCreatureIndex = 0;
 		for (int i = 0; i < creatures.Count; ++i) {

@@ -40,7 +40,7 @@ public class GameController : SingletonBehaviour<GameController>
 			Time.timeScale = 1;
 		}
 		timer -= Time.unscaledDeltaTime;
-		if (timer < 0) 
+		if (timer < 0 || PlayerController.Instance.creatureList.Count == 0) 
 		{
 			ChangeOverlay(GameStateEnum.gameOver);
 			//Camera.main.gameObject.SetActive(false);

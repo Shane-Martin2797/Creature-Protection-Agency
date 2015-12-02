@@ -151,7 +151,7 @@ MonoBehaviour:
   navAgent: {fileID: 19554928}
   movementSpeed: 10
   idleTime: 1
-  cooldownTime: 3
+  cooldownTime: 6
   cooldownTimer: 0
   visionCone: 60
   visionDistance: 100
@@ -226,6 +226,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: idleTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cooldownTime
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

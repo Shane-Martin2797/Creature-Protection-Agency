@@ -30,6 +30,10 @@ public abstract class BaitController : MonoBehaviour
 			hitGround = true;
 
 			PlayerController.activeList.Add(this);
+
+			Destroy(GetComponent<Rigidbody>());
+
+			transform.eulerAngles = Vector3.forward * -90;
 		}
 	}
 

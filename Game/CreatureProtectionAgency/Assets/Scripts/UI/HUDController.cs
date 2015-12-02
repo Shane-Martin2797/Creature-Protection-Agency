@@ -22,7 +22,7 @@ public class HUDController : MonoBehaviour
         {
             int numSeconds = GameController.Instance.timer % 60;
             int numMinutes = Mathf.FloorToInt(GameController.Instance.timer / 60);
-            timerText.text = "Time Left: " + numMinutes.ToString() + ":" numSeconds.ToString();
+            timerText.text = "Time Left: " + numMinutes.ToString() + ":" + numSeconds.ToString();
         }
 	}
 }

@@ -28,9 +28,9 @@ public class Enemy_Trapper : EnemyController
 				fsm.Transition (EnemyEvents.Enemy_State_Tracking);
 			}
 		} 
-		if (lastPosition == transform.position) 
+		if (lastPosition == transform.position && typeof(Enemy_Idle).GetType().Name == fsm.currentState.GetType().Name) 
 		{
-			gotPos = false;
+			fsm.Transition(EnemyEvents.Enemy_State_Idle);
 		}
 		lastPosition = transform.position;
 

@@ -8,6 +8,7 @@ public static class Scenes
 	public static string logo = "LogoSplash";
 	public static string Title = "Title";
 	public static string Main = "Main";
+	public static string HUD = "HUD";
 }
 
 public class LogoController : MonoBehaviour 

@@ -105,7 +105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &122150084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,8 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a022bd60810804b8baaf5e7a27b62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureList:
-  - {fileID: 122150084}
+  creatureList: []
   baitPrefab: {fileID: 11416744, guid: 0192f118b51954c41a48b92995f5c5a5, type: 2}
   baitThrowTimeInterval: .5
   timeForBaitToHitGround: 3
@@ -470,7 +469,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424774, guid: 9448040ab42c81e4ebd9f5d7717ecc4b, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 424774, guid: 9448040ab42c81e4ebd9f5d7717ecc4b, type: 2}
       propertyPath: m_LocalRotation.z
@@ -478,7 +477,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424774, guid: 9448040ab42c81e4ebd9f5d7717ecc4b, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106709
       objectReference: {fileID: 0}
     - target: {fileID: 424774, guid: 9448040ab42c81e4ebd9f5d7717ecc4b, type: 2}
       propertyPath: m_RootOrder

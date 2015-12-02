@@ -31,7 +31,7 @@ public class Enemy_Tracking : FSMState<EnemyController>
 		} else {
 			//Follow the creature it is tracking
 			if (context.targetCreature != null) {
-				context.navAgent.SetDestination (context.targetCreature.transform.position);
+				//context.navAgent.SetDestination (context.targetCreature.transform.position);
 			}
 		}
 	}

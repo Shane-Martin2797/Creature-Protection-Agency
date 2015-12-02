@@ -44,7 +44,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119678}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: -2.79999995, y: 0, z: .460000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .709999979}
+  m_LocalPosition: {x: -0, y: 0, z: 1.12}
   m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
   m_Children: []
   m_Father: {fileID: 424774}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119678}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3badd331626478246abee13c37e74d38, type: 3}
   m_Name: 
@@ -153,16 +153,19 @@ MonoBehaviour:
   idleTime: 1
   cooldownTime: 3
   cooldownTimer: 0
-  visionCone: 0
-  visionDistance: 0
+  visionCone: 60
+  visionDistance: 100
   targetCreature: {fileID: 0}
-  attackObject: {fileID: 0}
+  attackObject: {fileID: 180452, guid: 47eaea5ce3b07400586cf848418f0be5, type: 2}
   attackObjectSpawnPoint: {fileID: 473538}
   waypointSoftEdge: .100000001
   gotPos: 0
   accuracy: 80
   maxBulletDispersion: 30
-  movementWaypoints: []
+  movementWaypoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 5, y: 0, z: 5}
+  - {x: -5, y: 0, z: -5}
   currentWaypoint: 0
   previousWaypoint: 0
 --- !u!114 &11482066
@@ -171,7 +174,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119678}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac3e182c6c2361148a56c47f83bd072e, type: 3}
   m_Name: 

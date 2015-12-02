@@ -111,7 +111,7 @@ public abstract class EnemyController : MonoBehaviour
 		float distance = Vector3.Distance (transform.position, creature.transform.position);
 		//If the distance is further than we can see then return
 		if (distance > visionDistance) {
-			Debug.Log ("Distance is: " + distance + ". I cannot see that far");
+	//		Debug.Log ("Distance is: " + distance + ". I cannot see that far");
 			return;
 		}
 		

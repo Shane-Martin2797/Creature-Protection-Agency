@@ -16,16 +16,20 @@ public class Creature : MonoBehaviour
 	BaitController target;
 
 	float stunTime;
+
+	Renderer _renderer;
+
+	Color originalColor;
+
+	Color stunColor;
 	
 	void Start ()
 	{
 		navigator = GetComponent<NavMeshAgent> ();
 		PlayerController.Instance.creatureList.Add (this);
-	}
-
-	void OnDestroy () 
-	{
-		PlayerController.Instance.creatureList.Remove (this);
+		_renderer = GetComponent<Renderer> ();
+		stunColor = Color.red;
+		originalColor = _renderer.material.color;
 	}
 
 	public void Stun (float _stunTime)
@@ -37,6 +41,7 @@ public class Creature : MonoBehaviour
 	void Update () 
 	{
 		if (stunTime < 0) {
+			_renderer.material.color = originalColor;
 			if (numberOfActiveBaits != PlayerController.activeList.Count) {
 				FindClosestPath ();
 
@@ -52,6 +57,8 @@ public class Creature : MonoBehaviour
 			}
 		} else 
 		{
+			_renderer.material.color = stunColor;
+
 			stunTime -= Time.deltaTime;
 		}
 	}

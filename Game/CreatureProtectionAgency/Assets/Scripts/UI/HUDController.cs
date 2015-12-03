@@ -20,9 +20,13 @@ public class HUDController : MonoBehaviour
     {
         if(gameNotNull)
         {
-            float numSeconds = GameController.Instance.timer % 60;
+            int numSeconds = Mathf.FloorToInt(GameController.Instance.timer % 60);
             int numMinutes = Mathf.FloorToInt(GameController.Instance.timer / 60);
-            timerText.text = "Time Left: " + numMinutes.ToString() + ":" + numSeconds.ToString("00");
+            timerText.text = numMinutes.ToString() + ":" + numSeconds.ToString("00");
+        }
+        else if (GameController.Instance != null)
+        {
+            gameNotNull = true;
         }
 	}
 }

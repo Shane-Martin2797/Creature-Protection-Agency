@@ -46,7 +46,7 @@ public class SoundEffectController : SingletonBehaviour<SoundEffectController>
     public void PlaySoundEffect(AudioClip audioClip, Vector3 locationOfSound)
     {
         //Creates a gameObject for the audioSource to be added to.
-		GameObject audioSource = GameObject.CreatePrimitive (PrimitiveType.Cube);//new GameObject ();
+		GameObject audioSource = new GameObject ();
 
         //Sets the position of the GameObject
         audioSource.transform.position = locationOfSound;

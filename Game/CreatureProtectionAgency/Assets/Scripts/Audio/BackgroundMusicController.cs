@@ -29,11 +29,11 @@ public class BackgroundMusicController : SingletonBehaviour<BackgroundMusicContr
         if (isRandom)
         {
             music.loop = false;
-            int randomNumber = Random.Range(0, musicArray.Length);
-            music.PlayOneShot(musicArray[randomNumber]);
+            music.PlayOneShot(musicArray[Random.Range(0, musicArray.Length)]);
         }
         else
         {
+            music.loop = true;
             music.PlayOneShot(loopClip);
         }
     }

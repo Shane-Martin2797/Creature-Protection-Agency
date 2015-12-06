@@ -42,6 +42,8 @@ public abstract class EnemyController : MonoBehaviour
 	public bool gotPos;
 
 	float stun = 0;
+
+    public GameObject stunParticles;
 	
 	//Virtual Methods
 	public virtual void BuildFSM ()
@@ -63,7 +65,13 @@ public abstract class EnemyController : MonoBehaviour
 	// Use this for initialization
 	public virtual void Start ()
 	{
-		
+        if (stunParticles == null)
+        {
+            Debug.LogWarning("There is no game object set for the stun effect.");
+            stunParticles = new GameObject();
+            stunParticles.transform.position = this.transform.position;
+            stunParticles.name = "NoAttachedGameObjectForParticleSystem (Enemy)";
+        }
 	}
 	
 	/// <summary>
@@ -78,6 +86,8 @@ public abstract class EnemyController : MonoBehaviour
 		} 
 		else 
 		{
+            stunParticles.SetActive(false);
+
 			navAgent.Resume();
 			fsm.Update ();
 			if (targetCreature == null) {
@@ -118,8 +128,10 @@ public abstract class EnemyController : MonoBehaviour
 	public virtual void Stun (float _stunTime)
 	{
 		//run stun logic
-		navAgent.Stop (false);
+		navAgent.Stop (false);  //"Not certain, but this line may be redundant. navAgent.Stop() is used within Update." ~Metalavocado
 		stun = _stunTime;
+
+        stunParticles.SetActive(true);
 	}
 
 	public virtual void CheckCreature (Creature creature)

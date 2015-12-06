@@ -27,7 +27,7 @@ public class Enemy_Chaser : EnemyController
 	{
 		if (!gotPos) {
 			Vector3 point = GetMidPoint (PlayerController.Instance.creatureList);
-			point += new Vector3 (Random.Range (boundsX.x - distance, boundsX.y + distance), 0, distance + Random.Range (boundsZ.x - distance, boundsZ.y + distances));
+			point += new Vector3 (Random.Range (boundsX.x - distance, boundsX.y + distance), 0, Random.Range (boundsZ.x - distance, boundsZ.y + distance));
 			destination = point;
 			gotPos = true;
 		}

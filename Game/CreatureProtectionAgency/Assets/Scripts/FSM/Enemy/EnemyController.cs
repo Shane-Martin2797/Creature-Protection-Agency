@@ -72,19 +72,22 @@ public abstract class EnemyController : MonoBehaviour
 	/// </summary>
 	public virtual void Update ()
 	{
-		if (stun > 0) 
-		{
+		if (stun > 0) {
 			stun -= Time.deltaTime;
-			return;
-		}
-		fsm.Update ();
-		if (targetCreature == null) {
-			Target ();
-		} else {
-			LookAt (targetCreature.gameObject);
-		}
-		if (cooldownTimer > 0) {
-			cooldownTimer -= Time.deltaTime;
+			navAgent.Stop();
+		} 
+		else 
+		{
+			navAgent.Resume();
+			fsm.Update ();
+			if (targetCreature == null) {
+				Target ();
+			} else {
+				LookAt (targetCreature.gameObject);
+			}
+			if (cooldownTimer > 0) {
+				cooldownTimer -= Time.deltaTime;
+			}
 		}
 	}
 	
@@ -174,7 +177,7 @@ public abstract class EnemyController : MonoBehaviour
 	}
 	void LookAt (GameObject gameObj)
 	{
-		Debug.Log (gameObj.transform.position);
+//		Debug.Log (gameObj.transform.position);
 		Vector3 direction = (gameObj.transform.position - transform.position).normalized;
 		
 		//This is the angle from the enemy to the targeted creature.

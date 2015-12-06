@@ -7,10 +7,13 @@ public class RockController : ThrowObject
 
 	void OnCollisionEnter(Collision col)
 	{
-		if (col.gameObject.tag == "Poacher") 
+		EnemyController enemy = col.collider.GetComponent<EnemyController> ();
+		if (enemy != null) 
 		{
-			col.gameObject.GetComponent<EnemyController>().Stun(stunTime);
+			Debug.Log (true);
+			enemy.Stun(stunTime);
 		}
+		Destroy (this.gameObject);
 	}
 	// Use this for initialization
 	void Start () {

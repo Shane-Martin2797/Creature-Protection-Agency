@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Creature
+  - Poacher
   layers:
   - Default
   - TransparentFX

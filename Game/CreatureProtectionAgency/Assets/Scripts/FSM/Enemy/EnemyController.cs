@@ -40,6 +40,8 @@ public abstract class EnemyController : MonoBehaviour
 	public float waypointSoftEdge = 0f;
 	//Checks if the poacher has selected a position yet.
 	public bool gotPos;
+
+	float stun = 0;
 	
 	//Virtual Methods
 	public virtual void BuildFSM ()
@@ -70,6 +72,11 @@ public abstract class EnemyController : MonoBehaviour
 	/// </summary>
 	public virtual void Update ()
 	{
+		if (stun > 0) 
+		{
+			stun -= Time.deltaTime;
+			return;
+		}
 		fsm.Update ();
 		if (targetCreature == null) {
 			Target ();
@@ -104,8 +111,14 @@ public abstract class EnemyController : MonoBehaviour
 			}
 		}
 	}
-	
-	
+
+	public virtual void Stun (float _stunTime)
+	{
+		//run stun logic
+		navAgent.Stop (false);
+		stun = _stunTime;
+	}
+
 	public virtual void CheckCreature (Creature creature)
 	{
 		if (creature == null){

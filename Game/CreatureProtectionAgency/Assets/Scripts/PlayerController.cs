@@ -7,12 +7,18 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 {
 	public static List<BaitController> activeList;
 	public List<Creature> creatureList = new List<Creature> ();
+
+	public Light lightObject;
 	
 	public Bait baitPrefab;
+	public RockController rockPrefab;
 
 	public float baitThrowTimeInterval;
 
-	DateTime lastThrow;
+	public float rockThrowInterval;
+
+	DateTime lastBaitThrow;
+	DateTime lastRockThrow;
 
 	public float timeForBaitToHitGround;
 
@@ -26,6 +32,22 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		Bait.UpdateBait += UpdateBait;
 		activeList = new List<BaitController> ();
 
+		//make the light point at the mouse position
+		PointLight ();
+	}
+	
+	public float lightAimSpeed;
+	Vector3 lightAimPosition;
+	
+	void PointLight ()
+	{
+		//lerp between the last position and this position
+		lightAimPosition = lightObject.transform.position + Camera.main.ScreenPointToRay(Input.mousePosition).direction;
+		
+
+		Vector3 curAim = Vector3.Lerp (lightObject.transform.position + lightObject.transform.forward, lightAimPosition, lightAimSpeed/(lightAimPosition - transform.forward).magnitude);
+		lightObject.transform.LookAt(curAim);
+
 	}
 
 	void UpdateBait ()
@@ -35,27 +57,40 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 	void Update ()
 	{
-		if (curNumBait < maxBait && Input.GetKeyDown (KeyCode.Mouse0) && (lastThrow == null || (DateTime.Now - lastThrow).Seconds >= baitThrowTimeInterval)) {
-			ThrowBait ();
+		if (curNumBait < maxBait && Input.GetKeyDown (KeyCode.Mouse0) && (lastBaitThrow == null || (DateTime.Now - lastBaitThrow).Seconds >= baitThrowTimeInterval)) {
+			ThrowBait (true);
 
-			lastThrow = DateTime.Now;
+			lastBaitThrow = DateTime.Now;
 		}
+
+		if (Input.GetKeyDown (KeyCode.Mouse1) && (lastRockThrow == null || (DateTime.Now - lastRockThrow).Seconds >= rockThrowInterval)) {
+			ThrowBait (false);
+			
+			lastRockThrow = DateTime.Now;
+		}
+
+		PointLight ();
 	}
 
-	void ThrowBait ()
+
+	void ThrowBait (bool isBait) 
 	{
-		Bait bait = Instantiate (baitPrefab, transform.position, Quaternion.identity) as Bait;
+		ThrowObject throwObject;
+		if(isBait)
+			throwObject = Instantiate (baitPrefab, transform.position, Quaternion.identity) as BaitController;
+		else
+			throwObject = Instantiate (rockPrefab, transform.position, Quaternion.identity) as RockController;
 
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hitInfo;
 
 		Physics.Raycast (ray, out hitInfo);
 
-		bait.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
+		throwObject.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
 
-		bait.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
+		throwObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
 
-		bait.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
+		throwObject.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
 
 		curNumBait++;
 	}

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-public abstract class BaitController : MonoBehaviour
+public abstract class BaitController : ThrowObject
 {
 	public delegate void BaitEaten ();
 	

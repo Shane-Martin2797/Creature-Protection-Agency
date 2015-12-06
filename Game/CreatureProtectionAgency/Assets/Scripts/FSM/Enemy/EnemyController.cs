@@ -43,7 +43,7 @@ public abstract class EnemyController : MonoBehaviour
 
 	float stun = 0;
 
-    public GameObject stunParticles;
+	public GameObject stunParticles;
 	
 	//Virtual Methods
 	public virtual void BuildFSM ()
@@ -65,13 +65,12 @@ public abstract class EnemyController : MonoBehaviour
 	// Use this for initialization
 	public virtual void Start ()
 	{
-        if (stunParticles == null)
-        {
-            Debug.LogWarning("There is no game object set for the stun effect.");
-            stunParticles = new GameObject();
-            stunParticles.transform.position = this.transform.position;
-            stunParticles.name = "NoAttachedGameObjectForParticleSystem (Enemy)";
-        }
+		if (stunParticles == null) {
+			Debug.LogWarning ("There is no game object set for the stun effect.");
+			stunParticles = new GameObject ();
+			stunParticles.transform.position = this.transform.position;
+			stunParticles.name = "NoAttachedGameObjectForParticleSystem (Enemy)";
+		}
 	}
 	
 	/// <summary>
@@ -82,13 +81,11 @@ public abstract class EnemyController : MonoBehaviour
 	{
 		if (stun > 0) {
 			stun -= Time.deltaTime;
-			navAgent.Stop();
-		} 
-		else 
-		{
-            stunParticles.SetActive(false);
+			navAgent.Stop ();
+		} else {
+			stunParticles.SetActive (false);
 
-			navAgent.Resume();
+			navAgent.Resume ();
 			fsm.Update ();
 			if (targetCreature == null) {
 				Target ();
@@ -104,7 +101,9 @@ public abstract class EnemyController : MonoBehaviour
 	
 	public virtual void FixedUpdate ()
 	{
-		fsm.FixedUpdate ();
+		if (stun <= 0) {
+			fsm.FixedUpdate ();
+		}
 	}
 	
 	
@@ -131,19 +130,19 @@ public abstract class EnemyController : MonoBehaviour
 		navAgent.Stop (false);  //"Not certain, but this line may be redundant. navAgent.Stop() is used within Update." ~Metalavocado
 		stun = _stunTime;
 
-        stunParticles.SetActive(true);
+		stunParticles.SetActive (true);
 	}
 
 	public virtual void CheckCreature (Creature creature)
 	{
-		if (creature == null){
+		if (creature == null) {
 			return;
 		}
 
 		float distance = Vector3.Distance (transform.position, creature.transform.position);
 		//If the distance is further than we can see then return
 		if (distance > visionDistance) {
-	//		Debug.Log ("Distance is: " + distance + ". I cannot see that far");
+			//		Debug.Log ("Distance is: " + distance + ". I cannot see that far");
 			return;
 		}
 		
@@ -174,7 +173,7 @@ public abstract class EnemyController : MonoBehaviour
 		
 		//If we hit nothing with the raycast then break
 		if (hit.collider == null) {
-			Debug.Log ("I didn't hit anything with the raycast");
+//			Debug.Log ("I didn't hit anything with the raycast");
 			return;
 		}
 		//If the gameobject we hit is not equal to the object we are checking for then return.

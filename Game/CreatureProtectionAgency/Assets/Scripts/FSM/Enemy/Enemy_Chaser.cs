@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class Enemy_Chaser : EnemyController
 {
 	public float idleTimeDef = .1f;
+	public Vector2 boundsX = new Vector2 (-1, 1);
+	public Vector2 boundsZ = new Vector2 (-1, 1);
+	Vector3 destination;
 	
 	public override void Awake ()
 	{
@@ -22,12 +25,42 @@ public class Enemy_Chaser : EnemyController
 
 	public override void Movement ()
 	{
-		if (PlayerController.Instance.creatureList.Count > 0) {
-			Creature creature = GetClosestCreature (PlayerController.Instance.creatureList);
-			if(creature != null) {
-				navAgent.SetDestination (creature.transform.position);
+		if (!gotPos) {
+			Vector3 point = GetMidPoint (PlayerController.Instance.creatureList);
+			point += new Vector3 (Random.Range (boundsX.x - distance, boundsX.y + distance), 0, distance + Random.Range (boundsZ.x - distance, boundsZ.y + distances));
+			destination = point;
+			gotPos = true;
+		}
+		navAgent.SetDestination (destination);
+		
+//		if (PlayerController.Instance.creatureList.Count > 0) {
+//			Creature creature = GetClosestCreature (PlayerController.Instance.creatureList);
+//			if (creature != null) {
+//				navAgent.SetDestination (creature.transform.position);
+//			}
+//		}
+	}
+	
+	
+	float distance;
+	Vector3 GetMidPoint (List<Creature> gameObjectList)
+	{
+		Vector3 point = Vector3.zero;
+		float maxDistance = 0;
+		
+		
+		for (int i = 0; i < gameObjectList.Count; ++i) {
+			point += gameObjectList [i].transform.position;
+			for (int j = 0; j < gameObjectList.Count; ++j) {
+				float dist = Vector3.Distance (gameObjectList [i].transform.position, gameObjectList [j].transform.position);
+				if (dist > maxDistance) {
+					maxDistance = dist;
+				}	
 			}
 		}
+		distance = maxDistance;
+		
+		return point;
 	}
 	
 	Creature GetClosestCreature (List<Creature> creatures)
@@ -38,8 +71,7 @@ public class Enemy_Chaser : EnemyController
 		float closestDist = float.MaxValue;
 		int closestCreatureIndex = 0;
 		for (int i = 0; i < creatures.Count; ++i) {
-			if(creatures[i] == null)
-			{
+			if (creatures [i] == null) {
 				continue;
 			}
 			float currDist = Vector3.Distance (transform.position, creatures [i].transform.position);

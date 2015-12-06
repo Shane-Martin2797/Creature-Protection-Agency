@@ -377,6 +377,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 764909325}
+  - 114: {fileID: 764909326}
   m_Layer: 0
   m_Name: SP1
   m_TagString: Untagged
@@ -396,6 +397,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
+--- !u!114 &764909326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 764909324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572ea78b2bde741ba9ebcce9a6838c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesToSpawn:
+  - enemyToSpawn: {fileID: 11482066, guid: 9448040ab42c81e4ebd9f5d7717ecc4b, type: 2}
+    timeToSpawn: 10
+    positionToSpawn: {fileID: 764909325}
 --- !u!1001 &971872339
 Prefab:
   m_ObjectHideFlags: 0
@@ -451,6 +467,7 @@ GameObject:
   - 124: {fileID: 1018893924}
   - 81: {fileID: 1018893923}
   - 114: {fileID: 1018893928}
+  - 108: {fileID: 1018893929}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -537,10 +554,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatureList: []
+  lightObject: {fileID: 1018893929}
   baitPrefab: {fileID: 11416744, guid: 0192f118b51954c41a48b92995f5c5a5, type: 2}
+  rockPrefab: {fileID: 0}
   baitThrowTimeInterval: 0
+  rockThrowInterval: 0
   timeForBaitToHitGround: 3
   maxBait: 2147483647
+  lightAimSpeed: 0
+--- !u!108 &1018893929
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018893922}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1226037198
 GameObject:
   m_ObjectHideFlags: 0

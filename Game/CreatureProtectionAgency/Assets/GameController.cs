@@ -1,17 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class GameController : SingletonBehaviour<GameController>
 {
-	[System.Serializable]
-	public class EnemySpawner
-	{
-		public EnemyController enemyToSpawn;
-		// public float timeToSpawn;
-		public Transform positionToSpawn;
-	}
 	
 	
 	[System.Serializable]
@@ -30,7 +22,6 @@ public class GameController : SingletonBehaviour<GameController>
 	
 	FSM<GameController> fsm;
 	
-	public List<EnemySpawner> enemySpawnOrder = new List<EnemySpawner> ();
 	
 	public GameStateUI overlays;
 
@@ -60,13 +51,6 @@ public class GameController : SingletonBehaviour<GameController>
 				Application.LoadLevel (Scenes.logo);
 			}
 		}
-		//if it has been 30 seconds... {
-		if (enemySpawnOrder.Count > 0) {
-			EnemyController enemy = Instantiate (enemySpawnOrder [0].enemyToSpawn);
-			enemy.transform.position = enemySpawnOrder [0].positionToSpawn.position;
-			enemySpawnOrder.Remove (enemySpawnOrder [0]);
-		}
-		//}
 	}
 
 	void BuildFSM ()

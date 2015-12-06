@@ -22,7 +22,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 	public float timeForBaitToHitGround;
 
-	public int maxBait = 5;
+	public int maxBait = 3;
 
 	int curNumBait = 0;
 	

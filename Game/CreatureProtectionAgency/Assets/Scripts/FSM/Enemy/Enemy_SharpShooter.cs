@@ -31,6 +31,9 @@ public class Enemy_SharpShooter : EnemyController
 	public override void Attack ()
 	{		
 		GameObject bullet = Instantiate (attackObject, attackObjectSpawnPoint.position, transform.rotation) as GameObject;
+		Vector3 diff = targetCreature.transform.position - attackObjectSpawnPoint.position; //This is the Vector from the spawn of the bullet to the enemy.
+		//The Y is already taken account for with it instantiating at my rotation. The Z just offsets the bullet by turning it. So only X needs to be changed.
+		
 		Vector3 rot = bullet.transform.localEulerAngles;
 		if (Random.value <= (accuracy / deltaPercent)) {
 			rot.z += Random.Range (-maxBulletDispersion, maxBulletDispersion + 1);

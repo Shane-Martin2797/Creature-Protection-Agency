@@ -1,9 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class GameController : SingletonBehaviour<GameController> 
+public class GameController : SingletonBehaviour<GameController>
 {
+	[System.Serializable]
+	public class EnemySpawner
+	{
+		public EnemyController enemyToSpawn;
+		// public float timeToSpawn;
+		public Transform positionToSpawn;
+	}
+	
+	
 	[System.Serializable]
 	public class GameStateUI
 	{
@@ -19,10 +29,12 @@ public class GameController : SingletonBehaviour<GameController>
 	}
 	
 	FSM<GameController> fsm;
-
+	
+	public List<EnemySpawner> enemySpawnOrder = new List<EnemySpawner> ();
+	
 	public GameStateUI overlays;
 
-	void Start () 
+	void Start ()
 	{
 		Time.timeScale = 0;
 		BuildFSM ();
@@ -30,26 +42,31 @@ public class GameController : SingletonBehaviour<GameController>
 		ChangeOverlay (GameStateEnum.gameClick);
 	}
 	[HideInInspector]
-	public float timer = 300.0f;
+	public float
+		timer = 300.0f;
 
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.Mouse0)) 
-		{
-			ChangeOverlay(GameStateEnum.game);
+		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+			ChangeOverlay (GameStateEnum.game);
 			Time.timeScale = 1;
 		}
 		timer -= Time.unscaledDeltaTime;
-		if (timer < 0 || PlayerController.Instance.creatureList.Count == 0) 
-		{
-			ChangeOverlay(GameStateEnum.gameOver);
+		if (timer < 0 || PlayerController.Instance.creatureList.Count == 0) {
+			ChangeOverlay (GameStateEnum.gameOver);
 			//Camera.main.gameObject.SetActive(false);
 
-			if(Input.GetKeyDown(KeyCode.Backspace))
-			{
-				Application.LoadLevel(Scenes.logo);
+			if (Input.GetKeyDown (KeyCode.Backspace)) {
+				Application.LoadLevel (Scenes.logo);
 			}
 		}
+		//if it has been 30 seconds... {
+		if (enemySpawnOrder.Count > 0) {
+			EnemyController enemy = Instantiate (enemySpawnOrder [0].enemyToSpawn);
+			enemy.transform.position = enemySpawnOrder [0].positionToSpawn.position;
+			enemySpawnOrder.Remove (enemySpawnOrder [0]);
+		}
+		//}
 	}
 
 	void BuildFSM ()
@@ -64,27 +81,27 @@ public class GameController : SingletonBehaviour<GameController>
 		fsm.RegisterTransition(GameEvents.Begin_Play);
 		fsm.RegisterTransition(GameEvents.End_The_Game);
 		fsm.RegisterTransition(GameEvents.Restart);
-*/	}
+*/
+	}
 	
-	public void ChangeOverlay (GameStateEnum enumVal) 
+	public void ChangeOverlay (GameStateEnum enumVal)
 	{
 		overlays.mainMenu.gameObject.SetActive (false);
 		overlays.gameClick.gameObject.SetActive (false);
 		overlays.game.gameObject.SetActive (false);
 		overlays.gameOver.gameObject.SetActive (false);
 
-		switch (enumVal) 
-		{
-		case GameStateEnum.mainMenu :
+		switch (enumVal) {
+		case GameStateEnum.mainMenu:
 			overlays.mainMenu.gameObject.SetActive (true);
 			break;
-		case GameStateEnum.gameClick :
+		case GameStateEnum.gameClick:
 			overlays.gameClick.gameObject.SetActive (true);
 			break;
-		case GameStateEnum.game :
+		case GameStateEnum.game:
 			overlays.game.gameObject.SetActive (true);
 			break;
-		case GameStateEnum.gameOver :
+		case GameStateEnum.gameOver:
 			overlays.gameOver.gameObject.SetActive (true);
 			break;
 

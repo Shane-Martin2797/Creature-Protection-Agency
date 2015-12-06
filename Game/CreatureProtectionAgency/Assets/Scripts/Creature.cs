@@ -122,6 +122,7 @@ public class Creature : MonoBehaviour
 	}
 	void OnDestroy()
 	{
-		PlayerController.Instance.creatureList.Remove (this);
+		if(PlayerController.Instance != null && PlayerController.Instance.creatureList != null)
+			PlayerController.Instance.creatureList.Remove (this);
 	}
 }

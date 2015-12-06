@@ -131,7 +131,7 @@ public abstract class EnemyController : MonoBehaviour
 		
 		//If they are not within the cone of vision then return
 		if (dot < cone) {
-			Debug.Log ("The dot product is: " + dot + ". My vision cone is: " + cone);
+//			Debug.Log ("The dot product is: " + dot + ". My vision cone is: " + cone);
 			return;
 		}
 		direction.y = y_direction;
@@ -151,7 +151,7 @@ public abstract class EnemyController : MonoBehaviour
 		}
 		//If the gameobject we hit is not equal to the object we are checking for then return.
 		if (hit.collider.gameObject != creature.gameObject) {
-			Debug.Log ("I hit something, but it definitely wasn't the target");
+//			Debug.Log ("I hit something, but it definitely wasn't the target");
 			return;
 		}
 		//Set our target to the creature we are currently checking

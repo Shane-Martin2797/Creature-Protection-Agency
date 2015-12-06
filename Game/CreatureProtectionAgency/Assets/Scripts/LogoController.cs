@@ -9,6 +9,7 @@ public static class Scenes
 	public static string Title = "Title";
 	public static string Main = "Main";
 	public static string HUD = "HUD";
+	public static string StartingCinematic = "StartingCinematic";
 }
 
 public class LogoController : MonoBehaviour 

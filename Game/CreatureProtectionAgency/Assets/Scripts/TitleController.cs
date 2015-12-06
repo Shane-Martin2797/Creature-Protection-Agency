@@ -9,8 +9,7 @@ public class TitleController : MonoBehaviour {
 	
 	}
 	public void OnClick_Play(){
-		Application.LoadLevel (Scenes.Main);
-		Application.LoadLevelAdditive (Scenes.HUD);
+		Application.LoadLevel (Scenes.StartingCinematic);
 	}
 	public void OnClick_Options(){
 		OptionsScreen.SetActive (true);

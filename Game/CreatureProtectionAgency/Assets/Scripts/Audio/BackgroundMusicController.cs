@@ -16,12 +16,18 @@ public class BackgroundMusicController : SingletonBehaviour<BackgroundMusicContr
     //    music.PlayOneShot(initialClip);
     //}
 
+	void Awake ()
+	{
+		music = GetComponent<AudioSource> ();
+	}
+
     void Update ()
     {
         if (!music.isPlaying)
         {
             PlayMusic ();
         }
+		Debug.Log (music.isPlaying);
     }
 
     private void PlayMusic ()

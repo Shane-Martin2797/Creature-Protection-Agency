@@ -22,6 +22,8 @@ public class Creature : MonoBehaviour
 	Color originalColor;
 
 	Color stunColor;
+
+    public GameObject stunParticles;
 	
 	void Start ()
 	{
@@ -30,10 +32,19 @@ public class Creature : MonoBehaviour
 		_renderer = GetComponent<Renderer> ();
 		stunColor = Color.red;
 		originalColor = _renderer.material.color;
+
+        if (stunParticles == null)
+        {
+            Debug.LogWarning("There is no game object set for the stun effect.");
+            stunParticles = new GameObject();
+            stunParticles.name = "NoAttachedGameObjectForParticleSystem (Creature)";
+        }
 	}
 
 	public void Stun (float _stunTime)
 	{
+        stunParticles.SetActive(true);
+
 		//apply the stun time
 		stunTime = _stunTime;
 
@@ -47,6 +58,8 @@ public class Creature : MonoBehaviour
 		if (stunTime < 0) {
 			if (numberOfActiveBaits != PlayerController.activeList.Count) {
 				FindClosestPath ();
+
+                stunParticles.SetActive(false);
 
 				numberOfActiveBaits = PlayerController.activeList.Count;
 			}

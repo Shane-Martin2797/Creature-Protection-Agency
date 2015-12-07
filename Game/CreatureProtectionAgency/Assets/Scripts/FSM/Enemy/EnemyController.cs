@@ -6,6 +6,9 @@ public abstract class EnemyController : MonoBehaviour
 {
 	
 	public FSM<EnemyController> fsm;
+
+	public float percentChance = 50;
+
 	
 	public float range;
 

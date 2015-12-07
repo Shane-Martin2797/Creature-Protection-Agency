@@ -5,8 +5,7 @@ public class Enemy_Idle : FSMState<EnemyController>
 {
 	float delay;
 	public float delayDefault = 3;
-	public float percentChance = 50;
-	
+
 	public override void RegisterTransitions ()
 	{
 		AddTransition<Enemy_Moving> (EnemyEvents.Enemy_State_Moving);

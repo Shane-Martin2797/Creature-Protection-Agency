@@ -24,14 +24,14 @@ public class Enemy_Idle : FSMState<EnemyController>
 	{
 		base.Update ();
 		//Debug.Log ("Enemy in idle");
-	//	if (delay <= 0) {
-	//		delay = delayDefault;
-	//		if (Random.value <= (percentChance / 100)) {
+		if (delay <= 0) {
+			delay = delayDefault;
+			if (Random.value <= (context.percentChance / 100)) {
 				fsm.Transition (EnemyEvents.Enemy_State_Moving);
-	//		}
-	//	} else {
-	//		delay -= Time.deltaTime;
-	//	}
-//		Debug.Log ("Update Idle");
+			}
+		} else {
+			delay -= Time.deltaTime;
+		}
+		Debug.Log ("Update Idle");
 	}
 }

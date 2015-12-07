@@ -32,7 +32,10 @@ public class Enemy_Chaser : EnemyController
 	{
 		if (!gotPos) {
 			Vector3 point = GetMidPoint (PlayerController.Instance.creatureList);
-			point += new Vector3 (Random.Range (boundsX.x - distance, boundsX.y + distance), 0, Random.Range (boundsZ.x - distance, boundsZ.y + distance));
+			while(NavMesh.CalculatePath(transform.position, point, NavMesh.AllAreas, new NavMeshPath()))
+			{
+				point += new Vector3 (Random.Range (boundsX.x - (distance / 2), boundsX.y + (distance / 2)), 0, Random.Range (boundsZ.x - distance, boundsZ.y + distance));
+			}
 			destination = point;
 			gotPos = true;
 		}
@@ -63,6 +66,7 @@ public class Enemy_Chaser : EnemyController
 				}	
 			}
 		}
+		point /= gameObjectList.Count;
 		distance = maxDistance;
 		
 		return point;

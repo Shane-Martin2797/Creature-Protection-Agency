@@ -35,12 +35,16 @@ public class BackgroundMusicController : SingletonBehaviour<BackgroundMusicContr
         if (isRandom)
         {
             music.loop = false;
-            music.PlayOneShot(musicArray[Random.Range(0, musicArray.Length)]);
-        }
+			music.clip = musicArray[Random.Range(0, musicArray.Length)];
+
+			music.Play();
+		}
         else
         {
             music.loop = true;
-            music.PlayOneShot(loopClip);
+			music.clip = musicArray[Random.Range(0, musicArray.Length)];
+
+            music.Play();
         }
     }
 }

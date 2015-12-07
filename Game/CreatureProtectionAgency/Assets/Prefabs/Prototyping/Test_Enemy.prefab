@@ -209,6 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3badd331626478246abee13c37e74d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentChance: 50
+  range: 0
   navAgent: {fileID: 19554928}
   movementSpeed: 10
   idleTime: 1
@@ -225,9 +227,12 @@ MonoBehaviour:
   accuracy: 80
   maxBulletDispersion: 30
   movementWaypoints:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: -5}
   - {x: 5, y: 0, z: 5}
   - {x: -5, y: 0, z: -5}
+  - {x: 5, y: 0, z: -5}
+  - {x: -5, y: 0, z: 5}
+  - {x: 0, y: 0, z: 5}
   currentWaypoint: 0
   previousWaypoint: 0
 --- !u!114 &11482066
@@ -241,6 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3e182c6c2361148a56c47f83bd072e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentChance: 50
+  range: 0
   navAgent: {fileID: 19554928}
   movementSpeed: 10
   idleTime: 1
@@ -255,10 +262,10 @@ MonoBehaviour:
   gotPos: 0
   stunParticles: {fileID: 0}
   currentWaypoint: {x: 0, y: 0, z: 0}
-  minX: -2
-  maxX: 2
-  minZ: -2
-  maxZ: 2
+  minX: -18
+  maxX: 18
+  minZ: -20
+  maxZ: 15
 --- !u!195 &19554928
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -287,6 +294,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: idleTime
       value: 1
       objectReference: {fileID: 0}
@@ -305,6 +316,42 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SpotAngle
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minZ
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxZ
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxX
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minX
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[0].z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[3].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[4].z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[5].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[5].z
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

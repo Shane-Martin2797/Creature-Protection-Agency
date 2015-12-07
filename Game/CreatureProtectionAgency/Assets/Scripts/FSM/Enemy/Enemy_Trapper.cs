@@ -19,37 +19,31 @@ public class Enemy_Trapper : EnemyController
 	{		
 		GameObject gameObj = Instantiate (attackObject, attackObjectSpawnPoint.position, transform.rotation) as GameObject;
 	}
-	Vector3 lastPosition;
+
 	public override void Update ()
 	{
 		base.Update ();
 		if (cooldownTimer <= 0) {
 			if (!gotPos) {
-				fsm.Transition (EnemyEvents.Enemy_State_Tracking);
+				cooldownTimer = cooldownTime;
+				Attack ();
+				fsm.Transition (EnemyEvents.Enemy_State_Idle);
 			}
 		} 
-		if (lastPosition == transform.position && typeof(Enemy_Idle).GetType().Name == fsm.currentState.GetType().Name) 
-		{
-			fsm.Transition(EnemyEvents.Enemy_State_Idle);
-		}
-		lastPosition = transform.position;
-
 	}
 	
 	public override void Movement ()
 	{
 		if (!gotPos) {
 			currentWaypoint = Vector3.up * 1000;
-			NavMeshPath path = new NavMeshPath();
+			NavMeshPath path = new NavMeshPath ();
 
 			Vector3 waypointPosition;
 
-			while(currentWaypoint == Vector3.up * 1000)
-			{
+			while (currentWaypoint == Vector3.up * 1000) {
 				waypointPosition = new Vector3 (Random.Range (minX, maxX), transform.position.y, Random.Range (minZ, maxZ));
 
-				if(NavMesh.CalculatePath(transform.position, waypointPosition, NavMesh.AllAreas, path))
-				{
+				if (NavMesh.CalculatePath (transform.position, waypointPosition, NavMesh.AllAreas, path)) {
 					currentWaypoint = waypointPosition;
 				}
 			}

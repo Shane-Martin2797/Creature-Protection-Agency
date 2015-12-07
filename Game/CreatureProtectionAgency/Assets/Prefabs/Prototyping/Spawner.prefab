@@ -42,10 +42,10 @@ MonoBehaviour:
   enemiesToSpawn:
   - enemyToSpawn: {fileID: 11453074, guid: e6707fead173b42bea6af803d74f7e07, type: 2}
     timeToSpawn: 60
-    positionToSpawn: {fileID: 477700}
+    positionToSpawn: {fileID: 0}
   - enemyToSpawn: {fileID: 11476486, guid: 2c2d7d9b8149445fc9e5b62b2cd2310a, type: 2}
     timeToSpawn: 30
-    positionToSpawn: {fileID: 477700}
+    positionToSpawn: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

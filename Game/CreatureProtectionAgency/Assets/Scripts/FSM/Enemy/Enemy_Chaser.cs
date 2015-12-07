@@ -23,6 +23,11 @@ public class Enemy_Chaser : EnemyController
 		idleTime = idleTimeDef;
 	}
 
+	public override void Update ()
+	{
+		base.Update ();
+	}
+
 	public override void Movement ()
 	{
 		if (!gotPos) {

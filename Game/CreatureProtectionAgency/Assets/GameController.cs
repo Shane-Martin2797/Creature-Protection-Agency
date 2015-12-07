@@ -38,7 +38,7 @@ public class GameController : SingletonBehaviour<GameController>
 
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+		if (Input.GetKeyDown (KeyCode.Mouse0) || Input.GetKeyDown (KeyCode.Mouse1)) {
 			ChangeOverlay (GameStateEnum.game);
 			Time.timeScale = 1;
 		}

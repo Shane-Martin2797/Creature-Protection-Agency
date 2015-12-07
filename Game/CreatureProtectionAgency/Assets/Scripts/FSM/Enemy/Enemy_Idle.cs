@@ -24,15 +24,15 @@ public class Enemy_Idle : FSMState<EnemyController>
 	public override void Update ()
 	{
 		base.Update ();
-
-		if (delay <= 0) {
-			delay = delayDefault;
-			if (Random.value <= (percentChance / 100)) {
+		//Debug.Log ("Enemy in idle");
+	//	if (delay <= 0) {
+	//		delay = delayDefault;
+	//		if (Random.value <= (percentChance / 100)) {
 				fsm.Transition (EnemyEvents.Enemy_State_Moving);
-			}
-		} else {
-			delay -= Time.deltaTime;
-		}
+	//		}
+	//	} else {
+	//		delay -= Time.deltaTime;
+	//	}
 //		Debug.Log ("Update Idle");
 	}
 }

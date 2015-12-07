@@ -76,11 +76,14 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	void ThrowBait (bool isBait) 
 	{
 		ThrowObject throwObject;
-		if(isBait)
+		if (isBait) {
 			throwObject = Instantiate (baitPrefab, transform.position, Quaternion.identity) as BaitController;
-		else
+			curNumBait++;
+		} 
+		else 
+		{
 			throwObject = Instantiate (rockPrefab, transform.position, Quaternion.identity) as RockController;
-
+		}
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hitInfo;
 
@@ -91,8 +94,6 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		throwObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
 
 		throwObject.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
-
-		curNumBait++;
 	}
 	
 	Vector3 CalculateTrajectory (Vector3 origin, Vector3 destination)

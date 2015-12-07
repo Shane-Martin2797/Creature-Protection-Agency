@@ -87,7 +87,10 @@ public abstract class EnemyController : MonoBehaviour
 	/// </summary>
 	public virtual void Update ()
 	{
+//		Debug.Log (gameObject.name + " is in " + fsm.currentState.GetType ().Name);
+
 		if (stun > 0) {
+			Debug.Log("stunned");
 			stun -= Time.deltaTime;
 			navAgent.Stop ();
 		} else {
@@ -138,7 +141,8 @@ public abstract class EnemyController : MonoBehaviour
 		navAgent.Stop (false);  //"Not certain, but this line may be redundant. navAgent.Stop() is used within Update." ~Metalavocado
 		stun = _stunTime;
 
-		stunParticles.SetActive (true);
+		if(stunParticles != null)
+			stunParticles.SetActive (true);
 	}
 
 	public virtual void CheckCreature (Creature creature)

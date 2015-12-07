@@ -227,9 +227,12 @@ MonoBehaviour:
   accuracy: 80
   maxBulletDispersion: 30
   movementWaypoints:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: -5}
   - {x: 5, y: 0, z: 5}
   - {x: -5, y: 0, z: -5}
+  - {x: 5, y: 0, z: -5}
+  - {x: -5, y: 0, z: 5}
+  - {x: 0, y: 0, z: 5}
   currentWaypoint: 0
   previousWaypoint: 0
 --- !u!114 &11482066
@@ -291,6 +294,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: idleTime
       value: 1
       objectReference: {fileID: 0}
@@ -325,6 +332,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: minX
       value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[0].z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[3].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[4].z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[5].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementWaypoints.Array.data[5].z
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

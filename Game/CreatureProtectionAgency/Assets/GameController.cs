@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -34,7 +34,7 @@ public class GameController : SingletonBehaviour<GameController>
 	}
 	[HideInInspector]
 	public float
-		timer = 300.0f;
+		timer = 180.0f;
 
 	void Update ()
 	{

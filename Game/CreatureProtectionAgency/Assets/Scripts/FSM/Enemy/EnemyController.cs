@@ -6,6 +6,8 @@ public abstract class EnemyController : MonoBehaviour
 {
 	
 	public FSM<EnemyController> fsm;
+	
+	public float range;
 
 	public NavMeshAgent navAgent;
 
@@ -59,6 +61,12 @@ public abstract class EnemyController : MonoBehaviour
 	public virtual void Awake ()
 	{
 		BuildFSM ();
+		if (range == 0) {
+			range = visionDistance;
+			Debug.Log ("Range for: "
+				+ name 
+				+ " has not been set, it is now visionDistance");
+		}
 	}
 	
 	

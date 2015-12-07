@@ -190,19 +190,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ee75cad0b864a668a241aca50ee1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 3
   navAgent: {fileID: 19588840}
   movementSpeed: 6
   idleTime: .100000001
   cooldownTime: 1
   cooldownTimer: 0
-  visionCone: 360
-  visionDistance: 3
+  visionCone: 120
+  visionDistance: 20
   targetCreature: {fileID: 0}
   attackObject: {fileID: 140512}
   attackObjectSpawnPoint: {fileID: 480268}
   waypointSoftEdge: .100000001
   gotPos: 0
+  stunParticles: {fileID: 0}
   idleTimeDef: .100000001
+  boundsX: {x: -1, y: 1}
+  boundsZ: {x: -1, y: 1}
 --- !u!114 &11488108
 MonoBehaviour:
   m_ObjectHideFlags: 1

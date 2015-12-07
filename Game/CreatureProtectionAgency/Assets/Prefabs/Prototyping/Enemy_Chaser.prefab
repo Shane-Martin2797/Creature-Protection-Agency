@@ -157,9 +157,9 @@ Light:
   serializedVersion: 6
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 8
-  m_Range: 10
-  m_SpotAngle: 30
+  m_Intensity: 1
+  m_Range: 100
+  m_SpotAngle: 120
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -175,7 +175,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_BounceIntensity: 0
+  m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
@@ -190,19 +190,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ee75cad0b864a668a241aca50ee1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 3
   navAgent: {fileID: 19588840}
   movementSpeed: 6
   idleTime: .100000001
   cooldownTime: 1
   cooldownTimer: 0
-  visionCone: 360
-  visionDistance: 3
+  visionCone: 120
+  visionDistance: 20
   targetCreature: {fileID: 0}
   attackObject: {fileID: 140512}
   attackObjectSpawnPoint: {fileID: 480268}
   waypointSoftEdge: .100000001
   gotPos: 0
+  stunParticles: {fileID: 0}
   idleTimeDef: .100000001
+  boundsX: {x: -1, y: 1}
+  boundsZ: {x: -1, y: 1}
 --- !u!114 &11488108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,6 +262,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SpotAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_BounceIntensity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

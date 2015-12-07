@@ -26,12 +26,13 @@ public class Enemy_Tracking : FSMState<EnemyController>
 	
 	void Track ()
 	{
-		if (context.cooldownTimer <= 0) {
+		if (context.cooldownTimer <= 0 && 
+			Vector3.Distance (context.transform.position, context.targetCreature.transform.position) <= context.range) {
 			fsm.Transition (EnemyEvents.Enemy_State_Attacking);
 		} else {
 			//Follow the creature it is tracking
 			if (context.targetCreature != null) {
-				//context.navAgent.SetDestination (context.targetCreature.transform.position);
+				context.navAgent.SetDestination (context.targetCreature.transform.position);
 			}
 		}
 	}

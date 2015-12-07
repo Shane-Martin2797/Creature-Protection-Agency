@@ -23,6 +23,11 @@ public class Enemy_Chaser : EnemyController
 		idleTime = idleTimeDef;
 	}
 
+	public override void Update ()
+	{
+		base.Update ();
+	}
+
 	public override void Movement ()
 	{
 		if (!gotPos) {
@@ -31,7 +36,7 @@ public class Enemy_Chaser : EnemyController
 			destination = point;
 			gotPos = true;
 		}
-		navAgent.SetDestination (destination);
+		navAgent.SetDestination (destination);		
 		
 //		if (PlayerController.Instance.creatureList.Count > 0) {
 //			Creature creature = GetClosestCreature (PlayerController.Instance.creatureList);

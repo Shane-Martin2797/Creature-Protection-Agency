@@ -6,7 +6,7 @@ public class Spot_Light : MonoBehaviour
 {
 	public EnemyController enemy;
 	private Light light;
-	
+/*	
 	void Awake ()
 	{
 		light = this.GetComponent<Light> ();
@@ -18,5 +18,5 @@ public class Spot_Light : MonoBehaviour
 			light.spotAngle = enemy.visionCone;
 		}
 		light.range = enemy.visionDistance;
-	}
+	}*/
 }

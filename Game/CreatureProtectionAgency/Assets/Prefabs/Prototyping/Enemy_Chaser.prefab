@@ -190,14 +190,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ee75cad0b864a668a241aca50ee1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentChance: 50
   range: 3
   navAgent: {fileID: 19588840}
   movementSpeed: 6
   idleTime: .100000001
   cooldownTime: 1
   cooldownTimer: 0
-  visionCone: 120
-  visionDistance: 20
+  visionCone: 100
+  visionDistance: 10
   targetCreature: {fileID: 0}
   attackObject: {fileID: 140512}
   attackObjectSpawnPoint: {fileID: 480268}
@@ -240,7 +241,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 147620}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -278,6 +279,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_BounceIntensity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: visionDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: visionCone
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

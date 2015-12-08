@@ -40,7 +40,7 @@ public class Enemy_Chaser : EnemyController
 			gotPos = true;
 		}
 		navAgent.SetDestination (destination);		
-		
+		Debug.Log (destination);
 //		if (PlayerController.Instance.creatureList.Count > 0) {
 //			Creature creature = GetClosestCreature (PlayerController.Instance.creatureList);
 //			if (creature != null) {

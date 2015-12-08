@@ -475,8 +475,8 @@ MonoBehaviour:
   idleTime: 1
   cooldownTime: 6
   cooldownTimer: 0
-  visionCone: 60
-  visionDistance: 100
+  visionCone: 120
+  visionDistance: 10
   targetCreature: {fileID: 0}
   attackObject: {fileID: 180452, guid: 47eaea5ce3b07400586cf848418f0be5, type: 2}
   attackObjectSpawnPoint: {fileID: 458824}
@@ -1640,7 +1640,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: visionDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: visionCone
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118044}

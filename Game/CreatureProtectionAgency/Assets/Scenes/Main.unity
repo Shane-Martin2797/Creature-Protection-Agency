@@ -663,8 +663,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 208994511}
-  m_LocalRotation: {x: 1.2367768e-07, y: .898793995, z: .438371271, w: -2.53576729e-07}
-  m_LocalPosition: {x: -.344884068, y: -11.5574465, z: 13.1822338}
+  m_LocalRotation: {x: .0817557797, y: .839456558, z: .520831406, w: -.131770059}
+  m_LocalPosition: {x: 1.69682443, y: -6.76005554, z: 4.80640793}
   m_LocalScale: {x: .38320449, y: .38320446, z: .38320449}
   m_Children: []
   m_Father: {fileID: 1606728509}
@@ -968,7 +968,7 @@ Transform:
   - {fileID: 1818425383}
   - {fileID: 656719954}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1001 &397273020
 Prefab:
   m_ObjectHideFlags: 0
@@ -1425,9 +1425,9 @@ Light:
   serializedVersion: 6
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.03999996
-  m_Range: 98.593811
-  m_SpotAngle: 30
+  m_Intensity: 6
+  m_Range: 150
+  m_SpotAngle: 25
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -2324,7 +2324,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 10
 --- !u!1001 &1403714540
 Prefab:
   m_ObjectHideFlags: 0
@@ -3078,7 +3078,7 @@ MonoBehaviour:
   creatureList: []
   lightObject: {fileID: 866025732}
   baitPrefab: {fileID: 11416744, guid: 0192f118b51954c41a48b92995f5c5a5, type: 2}
-  rockPrefab: {fileID: 11474210, guid: 2526604278e17fd40a8f555f1fb2223e, type: 2}
+  rockPrefab: {fileID: 11422794, guid: 2526604278e17fd40a8f555f1fb2223e, type: 2}
   baitThrowTimeInterval: 1.5
   rockThrowInterval: 1.5
   timeForBaitToHitGround: 1

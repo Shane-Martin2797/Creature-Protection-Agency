@@ -89,11 +89,14 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		Physics.Raycast (ray, out hitInfo);
 
-		throwObject.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
+			throwObject.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
+		if (isBait) {
+			throwObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
 
-		throwObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
-
-		throwObject.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
+			throwObject.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
+		}
+		else {
+		}
 	}
 	
 	Vector3 CalculateTrajectory (Vector3 origin, Vector3 destination)

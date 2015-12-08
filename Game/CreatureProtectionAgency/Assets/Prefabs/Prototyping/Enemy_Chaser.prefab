@@ -198,7 +198,7 @@ MonoBehaviour:
   cooldownTime: 1
   cooldownTimer: 0
   visionCone: 100
-  visionDistance: 10
+  visionDistance: 15
   targetCreature: {fileID: 0}
   attackObject: {fileID: 140512}
   attackObjectSpawnPoint: {fileID: 480268}
@@ -282,7 +282,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: visionDistance
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Speed

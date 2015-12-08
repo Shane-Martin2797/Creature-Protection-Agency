@@ -435,8 +435,8 @@ Light:
   serializedVersion: 6
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 100
+  m_Intensity: 8
+  m_Range: 20
   m_SpotAngle: 120
   m_CookieSize: 10
   m_Shadows:
@@ -476,7 +476,7 @@ MonoBehaviour:
   cooldownTime: 6
   cooldownTimer: 0
   visionCone: 120
-  visionDistance: 10
+  visionDistance: 20
   targetCreature: {fileID: 0}
   attackObject: {fileID: 180452, guid: 47eaea5ce3b07400586cf848418f0be5, type: 2}
   attackObjectSpawnPoint: {fileID: 458824}
@@ -1643,11 +1643,23 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: visionDistance
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: visionCone
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SpotAngle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Intensity
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Range
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

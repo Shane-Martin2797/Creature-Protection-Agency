@@ -22,31 +22,41 @@ public class Enemy_Chaser : EnemyController
 		attackObject.SetActive (true);
 		idleTime = idleTimeDef;
 	}
-
+	
 	public override void Update ()
 	{
 		base.Update ();
 	}
-
+	
 	public override void Movement ()
 	{
+		
 		if (!gotPos) {
+			NavMeshPath path = new NavMeshPath ();
 			Vector3 point = GetMidPoint (PlayerController.Instance.creatureList);
-			while(NavMesh.CalculatePath(transform.position, point, NavMesh.AllAreas, new NavMeshPath()))
-			{
+			int whileLoopBreakIndex = 0;
+			while (path.status != NavMeshPathStatus.PathComplete) {
 				point += new Vector3 (Random.Range (boundsX.x - (distance / 2), boundsX.y + (distance / 2)), 0, Random.Range (boundsZ.x - distance, boundsZ.y + distance));
+				Debug.Log (point);
+				NavMesh.CalculatePath (transform.position, point, NavMesh.AllAreas, path);
+				whileLoopBreakIndex++;
+				if (whileLoopBreakIndex >= 1000) {
+					Debug.LogError ("Change the Bounds to a smaller value, it took 1000 iterations and still didn't find a path (CHASER)");
+					fsm.Transition (EnemyEvents.Enemy_State_Idle);
+					break;
+				}
 			}
 			destination = point;
 			gotPos = true;
 		}
-		navAgent.SetDestination (destination);		
-		Debug.Log (destination);
-//		if (PlayerController.Instance.creatureList.Count > 0) {
-//			Creature creature = GetClosestCreature (PlayerController.Instance.creatureList);
-//			if (creature != null) {
-//				navAgent.SetDestination (creature.transform.position);
-//			}
-//		}
+		destination.y = transform.position.y;
+
+		//Debug.Log (destination);
+		if (Vector3.Distance (transform.position, destination) <= waypointSoftEdge) {
+			fsm.Transition (EnemyEvents.Enemy_State_Idle);
+		} else {
+			navAgent.SetDestination (destination);
+		}
 	}
 	
 	

@@ -37,7 +37,6 @@ public class Enemy_Chaser : EnemyController
 			int whileLoopBreakIndex = 0;
 			while (path.status != NavMeshPathStatus.PathComplete) {
 				point += new Vector3 (Random.Range (boundsX.x - (distance / 2), boundsX.y + (distance / 2)), 0, Random.Range (boundsZ.x - distance, boundsZ.y + distance));
-				Debug.Log (point);
 				NavMesh.CalculatePath (transform.position, point, NavMesh.AllAreas, path);
 				whileLoopBreakIndex++;
 				if (whileLoopBreakIndex >= 1000) {
@@ -51,7 +50,6 @@ public class Enemy_Chaser : EnemyController
 		}
 		destination.y = transform.position.y;
 
-		//Debug.Log (destination);
 		if (Vector3.Distance (transform.position, destination) <= waypointSoftEdge) {
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
 		} else {

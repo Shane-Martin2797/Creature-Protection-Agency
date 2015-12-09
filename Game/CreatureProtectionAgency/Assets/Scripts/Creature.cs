@@ -26,10 +26,20 @@ public class Creature : MonoBehaviour
     public GameObject stunParticles;
 	//these are the bounds the creatures can move within
 	public Vector2 creatureBoundsX = new Vector2 (-1, 1);
-	public Vector2 creatuteBoundsZ = new Vector2 (-1, 1);
+	public Vector2 creatureBoundsZ = new Vector2 (-1, 1);
+
+	public float idleTimer;
+
+	private float idleTimerCounter;
+
+	private bool gotCreaturePos;
+
+	public float waypointSoftEdge=0.1f;
+	Vector3 waypoint;
 
 	void Start ()
 	{
+
 		navigator = GetComponent<NavMeshAgent> ();
 		PlayerController.Instance.creatureList.Add (this);
 		_renderer = GetComponent<Renderer> ();
@@ -56,8 +66,46 @@ public class Creature : MonoBehaviour
 		_renderer.material.color = stunColor;
 	}
 
+	void FindRoamingPosition ()
+	{
+
+		if (!gotCreaturePos) {
+
+			NavMeshPath path = new NavMeshPath ();
+			Vector3 point = transform.position;
+			int whileLoopBreakIndex = 0;
+			while (path.status != NavMeshPathStatus.PathComplete) {
+				point += new Vector3 (Random.Range (creatureBoundsX.x, creatureBoundsX.y), 0, Random.Range (creatureBoundsZ.x, creatureBoundsZ.y));
+				NavMesh.CalculatePath (transform.position, point, NavMesh.AllAreas, path);
+				whileLoopBreakIndex++;
+				if (whileLoopBreakIndex >= 1000) {
+					Debug.LogError ("Change the Bounds to a smaller value, it took 1000 iterations and still didn't find a path (Creature)");
+
+					break;
+				}
+			}
+			waypoint = point;
+			gotCreaturePos = true;
+		}
+		waypoint.y = transform.position.y;
+		
+		Debug.Log (waypoint);
+
+		if (Vector3.Distance (transform.position, waypoint) <= waypointSoftEdge) {
+			idleTimerCounter=idleTimer;
+			gotCreaturePos=false;
+
+		} else {
+			navigator.SetDestination (waypoint);
+		}
+	}
+
 	void Update () 
 	{
+		if (idleTimerCounter <= 0) {
+			FindRoamingPosition();
+		}
+
 		if (stunTime < 0) {
 			if (numberOfActiveBaits != PlayerController.activeList.Count) {
 				FindClosestPath ();
@@ -68,8 +116,11 @@ public class Creature : MonoBehaviour
 			}
 
 			if (target != null) {
+
 				navigator.SetDestination(target.transform.position);
-				
+
+				idleTimerCounter=idleTimer;
+
 				if ((target.transform.position - transform.position).magnitude < 3.0f) {
 					target.Eat ();
 				}
@@ -77,7 +128,9 @@ public class Creature : MonoBehaviour
 
 			if(target == null)
 			{
-				navigator.SetDestination(transform.position);
+
+				idleTimerCounter -= Time.deltaTime;
+				//navigator.SetDestination(transform.position);
 			}
 		} else 
 		{

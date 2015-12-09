@@ -27,7 +27,6 @@ public class BackgroundMusicController : SingletonBehaviour<BackgroundMusicContr
         {
             PlayMusic ();
         }
-		Debug.Log (music.isPlaying);
     }
 
     private void PlayMusic ()

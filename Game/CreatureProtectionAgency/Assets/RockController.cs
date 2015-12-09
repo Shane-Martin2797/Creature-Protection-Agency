@@ -17,7 +17,7 @@ public class RockController : ThrowObject
 	}
 	// Use this for initialization
 	void Start () {
-	
+		transform.Rotate (50, 180, 180);
 	}
 	
 	// Update is called once per frame

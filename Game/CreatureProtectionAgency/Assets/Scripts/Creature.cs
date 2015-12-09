@@ -24,7 +24,10 @@ public class Creature : MonoBehaviour
 	Color stunColor;
 
     public GameObject stunParticles;
-	
+	//these are the bounds the creatures can move within
+	public Vector2 creatureBoundsX = new Vector2 (-1, 1);
+	public Vector2 creatuteBoundsZ = new Vector2 (-1, 1);
+
 	void Start ()
 	{
 		navigator = GetComponent<NavMeshAgent> ();

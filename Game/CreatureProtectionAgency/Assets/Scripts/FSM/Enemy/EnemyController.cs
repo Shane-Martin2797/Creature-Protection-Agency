@@ -15,7 +15,8 @@ public abstract class EnemyController : MonoBehaviour
 	public NavMeshAgent navAgent;
 
 	//Stats of the Hunters
-	public float movementSpeed;
+	//Not used because of NavMeshAgent uses a speed value.
+	//public float movementSpeed;
 	
 	//Time spent in idle state before going back into movement
 	public float idleTime;
@@ -93,7 +94,7 @@ public abstract class EnemyController : MonoBehaviour
 //		Debug.Log (gameObject.name + " is in " + fsm.currentState.GetType ().Name);
 
 		if (stun > 0) {
-			Debug.Log("stunned");
+			Debug.Log ("stunned");
 			stun -= Time.deltaTime;
 			navAgent.Stop ();
 		} else {
@@ -144,7 +145,7 @@ public abstract class EnemyController : MonoBehaviour
 		navAgent.Stop (false);  //"Not certain, but this line may be redundant. navAgent.Stop() is used within Update." ~Metalavocado
 		stun = _stunTime;
 
-		if(stunParticles != null)
+		if (stunParticles != null)
 			stunParticles.SetActive (true);
 	}
 

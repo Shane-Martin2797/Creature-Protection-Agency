@@ -43,8 +43,17 @@ public class Enemy_Trapper : EnemyController
 			while (currentWaypoint == Vector3.up * 1000) {
 				waypointPosition = new Vector3 (Random.Range (minX, maxX), transform.position.y, Random.Range (minZ, maxZ));
 
-				if (NavMesh.CalculatePath (transform.position, waypointPosition, NavMesh.AllAreas, path)) {
+				int whileLoopBreakIndex = 0;
+				
+				if (path.status != NavMeshPathStatus.PathComplete) {
 					currentWaypoint = waypointPosition;
+					NavMesh.CalculatePath (transform.position, waypointPosition, NavMesh.AllAreas, path);
+					whileLoopBreakIndex++;
+					if (whileLoopBreakIndex >= 1000) {
+						Debug.LogError ("Change the min x and min y to a smaller value, it took 1000 iterations and still didn't find a path (TRAPPER)");
+						fsm.Transition (EnemyEvents.Enemy_State_Idle);
+						break;
+					}
 				}
 			}
 			gotPos = true;

@@ -203,7 +203,7 @@ MonoBehaviour:
   stunParticles: {fileID: 102554}
   creatureBoundsX: {x: -2, y: 2}
   creatureBoundsZ: {x: -2, y: 2}
-  idleTimer: 5
+  idleTimer: 1
   waypointSoftEdge: .100000001
 --- !u!136 &13678274
 CapsuleCollider:

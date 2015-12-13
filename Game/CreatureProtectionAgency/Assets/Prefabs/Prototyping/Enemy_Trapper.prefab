@@ -63,6 +63,7 @@ GameObject:
   - 195: {fileID: 19579114}
   - 114: {fileID: 11476486}
   - 114: {fileID: 11449640}
+  - 111: {fileID: 11184118}
   m_Layer: 0
   m_Name: Enemy_Trapper
   m_TagString: Enemy
@@ -457,6 +458,20 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!111 &11184118
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127060}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11449640
 MonoBehaviour:
   m_ObjectHideFlags: 1

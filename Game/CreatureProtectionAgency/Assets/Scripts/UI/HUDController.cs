@@ -9,7 +9,7 @@ public class HUDController : MonoBehaviour
     private bool playerNotNull = false;
 
     public Image baitTimerImage;
-    public Image rockTimerImage;
+    public Image dartTimerImage;
 
     void Start ()
     {
@@ -30,7 +30,7 @@ public class HUDController : MonoBehaviour
         if (playerNotNull)
         {
             baitTimerImage.fillAmount = PlayerController.Instance.UpdateHUDBait();
-            rockTimerImage.fillAmount = PlayerController.Instance.UpdateHUDRock();
+            dartTimerImage.fillAmount = PlayerController.Instance.UpdateHUDDart();
         }
         else if (PlayerController.Instance != null)
         {

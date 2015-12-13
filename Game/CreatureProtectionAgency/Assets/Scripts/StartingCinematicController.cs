@@ -9,8 +9,7 @@ public class StartingCinematicController : MonoBehaviour {
 	public void Update(){
 		Timer -= Time.deltaTime;
 		if (Timer <= 0) {
-			Application.LoadLevel (Scenes.Main);
-			Application.LoadLevelAdditive (Scenes.HUD);
+			Application.LoadLevel (Scenes.Tutorial);
 		}
 	}
 

@@ -138,13 +138,13 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     public float UpdateHUDBait ()
     {
         //(DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval
-        return Mathf.Clamp((DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval, 0, 1);
+        return Mathf.Clamp(((DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval) + ((DateTime.Now - lastBaitThrow).Milliseconds / baitThrowTimeInterval)/1000, 0, 1);
     }
 
     public float UpdateHUDDart()
     {
         //(DateTime.Now - lastBaitThrow).Seconds >= baitThrowTimeInterval
-        return Mathf.Clamp((DateTime.Now - lastDartThrow).Seconds / dartThrowInterval, 0, 1);
+        return Mathf.Clamp(((DateTime.Now - lastDartThrow).Seconds / dartThrowInterval) + ((DateTime.Now - lastDartThrow).Milliseconds / dartThrowInterval)/1000, 0, 1);
     }
 
     public void FindClosestEnemy (Vector3 _HitPoint)

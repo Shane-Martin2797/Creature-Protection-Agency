@@ -11,14 +11,14 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	public Light lightObject;
 	
 	public Bait baitPrefab;
-	public RockController rockPrefab;
+	public RockController dartPrefab;
 
 	public float baitThrowTimeInterval;
 
-	public float rockThrowInterval;
+	public float dartThrowInterval;
 
 	DateTime lastBaitThrow;
-	DateTime lastRockThrow;
+	DateTime lastDartThrow;
 
 	public float timeForBaitToHitGround;
 
@@ -63,10 +63,10 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 			lastBaitThrow = DateTime.Now;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Mouse1) && (lastRockThrow == null || (DateTime.Now - lastRockThrow).Seconds >= rockThrowInterval)) {
+		if (Input.GetKeyDown (KeyCode.Mouse1) && (lastDartThrow == null || (DateTime.Now - lastDartThrow).Seconds >= dartThrowInterval)) {
 			ThrowBait (false);
 			
-			lastRockThrow = DateTime.Now;
+			lastDartThrow = DateTime.Now;
 		}
 
 		PointLight ();
@@ -82,7 +82,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		} 
 		else 
 		{
-			throwObject = Instantiate (rockPrefab, transform.position, Quaternion.identity) as RockController;
+			throwObject = Instantiate (dartPrefab, transform.position, Quaternion.identity) as RockController;
 		}
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hitInfo;
@@ -111,4 +111,17 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		return diff;
 	}
+
+    public float UpdateHUDBait ()
+    {
+        //(DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval
+        return Mathf.Clamp((DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval, 0, 1);
+    }
+
+    public float UpdateHUDDart()
+    {
+        //(DateTime.Now - lastBaitThrow).Seconds >= baitThrowTimeInterval
+        return Mathf.Clamp((DateTime.Now - lastDartThrow).Seconds / dartThrowInterval, 0, 1);
+    }
+
 }

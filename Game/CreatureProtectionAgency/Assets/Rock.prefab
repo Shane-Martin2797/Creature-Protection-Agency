@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunTime: 2.5
+  target: {fileID: 0}
+  moveVelocity: 40
 --- !u!135 &13558314
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -185,6 +187,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: stunTime
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: moveVelocity
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

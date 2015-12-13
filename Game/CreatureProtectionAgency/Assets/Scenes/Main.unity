@@ -2972,6 +2972,8 @@ MonoBehaviour:
   dartThrowInterval: 5
   timeForBaitToHitGround: 1
   maxBait: 3
+  enemies: []
+  aimAssistThreshold: 5
   lightAimSpeed: 7
 --- !u!4 &1948835903 stripped
 Transform:

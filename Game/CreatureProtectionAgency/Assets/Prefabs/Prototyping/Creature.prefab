@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137942}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -.810000002, z: .230000004}
+  m_LocalPosition: {x: 0, y: -.0700000003, z: .230000004}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children: []
   m_Father: {fileID: 475200}
@@ -75,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.70000005, y: 5.07999992, z: -3.63000011}
+  m_LocalPosition: {x: -1.70000005, y: 4.44000006, z: -3.63000011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 481686}
@@ -201,8 +201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   stunParticles: {fileID: 102554}
-  creatureBoundsX: {x: -2, y: 2}
-  creatureBoundsZ: {x: -2, y: 2}
+  creatureBoundsX: {x: -1, y: 1}
+  creatureBoundsZ: {x: -1, y: 1}
   idleTimer: 1
   waypointSoftEdge: .100000001
 --- !u!136 &13678274

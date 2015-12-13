@@ -111,4 +111,17 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		return diff;
 	}
+
+    public float UpdateHUDBait ()
+    {
+        //(DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval
+        return Mathf.Clamp((DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval, 0, 1);
+    }
+
+    public float UpdateHUDRock()
+    {
+        //(DateTime.Now - lastBaitThrow).Seconds >= baitThrowTimeInterval
+        return Mathf.Clamp((DateTime.Now - lastRockThrow).Seconds / rockThrowInterval, 0, 1);
+    }
+
 }

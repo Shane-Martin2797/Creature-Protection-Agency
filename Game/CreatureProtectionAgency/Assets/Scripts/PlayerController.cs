@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class PlayerController : SingletonBehaviour<PlayerController>
 {
-	public static List<BaitController> activeList;
 	public List<Creature> creatureList = new List<Creature> ();
 
 	public Light lightObject;
@@ -30,7 +29,6 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	{
 		//	Cursor.visible = false;
 		Bait.UpdateBait += UpdateBait;
-		activeList = new List<BaitController> ();
 
 		//make the light point at the mouse position
 		PointLight ();

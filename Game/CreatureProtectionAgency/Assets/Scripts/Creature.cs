@@ -5,6 +5,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Creature : MonoBehaviour
 {
+    List<BaitController> listOfBait;
+
 	public float moveSpeed;
 
 	NavMeshAgent navigator;
@@ -39,6 +41,7 @@ public class Creature : MonoBehaviour
 
 	void Start ()
 	{
+        listOfBait = new List<BaitController>();
 
 		navigator = GetComponent<NavMeshAgent> ();
 		PlayerController.Instance.creatureList.Add (this);
@@ -54,6 +57,18 @@ public class Creature : MonoBehaviour
         }
 	}
 
+    public void AddBait (BaitController bait)
+    {
+        listOfBait.Add(bait);
+        FindClosestPath();
+    }
+
+    public void RemoveBait (BaitController bait)
+    {
+        listOfBait.Remove(bait);
+        FindClosestPath();
+    }
+
 	public void Stun (float _stunTime)
 	{
         stunParticles.SetActive(true);
@@ -65,6 +80,29 @@ public class Creature : MonoBehaviour
 
 		_renderer.material.color = stunColor;
 	}
+
+    bool IsBeingLit (Light light)
+    {
+        //store light's position
+        Vector3 lightPos = light.transform.position;
+        //store the light's forward direction
+        Vector3 lightDir = light.transform.forward;
+        //store the difference in position of the camera and this transforms'
+        Vector3 lightToThisDif = transform.position - lightPos;
+        //get the dot product of this and the light's facing direction
+        float dotProduct = Vector3.Dot(lightDir.normalized, lightToThisDif.normalized);
+        //change the dotproduct to an angle
+        float angle = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+        if (gameObject.name == "Creature")
+        {
+            Debug.Log(angle);
+       //     Debug.Log(dotProduct);
+        }
+        //check if the angle is less than the angle the light shines at
+        if (angle < light.spotAngle)
+            return true;
+        return false;
+    }
 
 	void FindRoamingPosition ()
 	{
@@ -89,7 +127,7 @@ public class Creature : MonoBehaviour
 		}
 		waypoint.y = transform.position.y;
 		
-		Debug.Log (waypoint);
+		//Debug.Log (waypoint);
 
 		if (Vector3.Distance (transform.position, waypoint) <= waypointSoftEdge) {
 			idleTimerCounter=idleTimer;
@@ -107,14 +145,6 @@ public class Creature : MonoBehaviour
 		}
 
 		if (stunTime < 0) {
-			if (numberOfActiveBaits != PlayerController.activeList.Count) {
-				FindClosestPath ();
-
-                stunParticles.SetActive(false);
-
-				numberOfActiveBaits = PlayerController.activeList.Count;
-			}
-
 			if (target != null) {
 
 				navigator.SetDestination(target.transform.position);
@@ -143,18 +173,19 @@ public class Creature : MonoBehaviour
 				_renderer.material.color = originalColor;
 			}
 		}
+        IsBeingLit(PlayerController.Instance.lightObject);
 	}
 
 	void FindClosestPath ()
 	{
-		float[] pathLengths = new float[PlayerController.activeList.Count];
-		paths = new NavMeshPath[PlayerController.activeList.Count];
+        float[] pathLengths = new float[listOfBait.Count];
+        paths = new NavMeshPath[listOfBait.Count];
 		List<float> arrangeablePathLengths = new List<float>();
 
-		for (int index = 0; index < PlayerController.activeList.Count; ++index) 
+        for (int index = 0; index < listOfBait.Count; ++index) 
 		{
 			paths[index] = new NavMeshPath();
-			if(!NavMesh.CalculatePath(transform.position, PlayerController.activeList[index].transform.position, NavMesh.AllAreas, paths[index]))
+            if (!NavMesh.CalculatePath(transform.position, listOfBait[index].transform.position, NavMesh.AllAreas, paths[index]))
 			{
 				paths[index] = null;
 			}
@@ -184,7 +215,7 @@ public class Creature : MonoBehaviour
 		{
 			if(pathLengths[index] == arrangeablePathLengths[0])
 			{
-				target = PlayerController.activeList[index];
+				target = listOfBait[index];
 				break;
 			}
 		}
@@ -193,5 +224,11 @@ public class Creature : MonoBehaviour
 	{
 		if(PlayerController.Instance != null && PlayerController.Instance.creatureList != null)
 			PlayerController.Instance.creatureList.Remove (this);
+
+        foreach (BaitController bait in listOfBait)
+        {
+            if (bait != null)
+                bait.CreatureDeath(this);
+        }
 	}
 }

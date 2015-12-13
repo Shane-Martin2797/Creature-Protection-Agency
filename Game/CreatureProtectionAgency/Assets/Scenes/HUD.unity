@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1533715368}
   baitTimerImage: {fileID: 0}
-  rockTimerImage: {fileID: 0}
+  dartTimerImage: {fileID: 0}
 --- !u!1 &394297796
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1533715368}
   baitTimerImage: {fileID: 696332712}
-  rockTimerImage: {fileID: 768358965}
+  dartTimerImage: {fileID: 768358965}
 --- !u!1 &1210197678
 GameObject:
   m_ObjectHideFlags: 0

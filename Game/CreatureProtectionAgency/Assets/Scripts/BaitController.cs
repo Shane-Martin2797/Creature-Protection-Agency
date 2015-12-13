@@ -8,13 +8,13 @@ public abstract class BaitController : ThrowObject
 	public static event BaitEaten UpdateBait;	
 
 
-	bool hitGround = false;
+	public bool hitGround { get; set; }
 
 	void Awake ()
 	{
-		if (PlayerController.activeList == null) 
-		{
-			PlayerController.activeList = new List<BaitController>();
+		hitGround = false;
+		if (PlayerController.activeList == null) {
+			PlayerController.activeList = new List<BaitController> ();
 		}
 	}
 
@@ -23,21 +23,20 @@ public abstract class BaitController : ThrowObject
 
 	}
 
-	void OnCollisionEnter (Collision col) 
+	void OnCollisionEnter (Collision col)
 	{
-		if (!hitGround && col.gameObject.tag == "Ground") 
-		{
+		if (!hitGround && col.gameObject.tag == "Ground") {
 			hitGround = true;
 
-			PlayerController.activeList.Add(this);
+			PlayerController.activeList.Add (this);
 
-			Destroy(GetComponent<Rigidbody>());
+			Destroy (GetComponent<Rigidbody> ());
 
 			transform.eulerAngles = Vector3.forward * -90;
 		}
 	}
 
-	void OnDestroy () 
+	void OnDestroy ()
 	{
 		UpdateBait ();
 		

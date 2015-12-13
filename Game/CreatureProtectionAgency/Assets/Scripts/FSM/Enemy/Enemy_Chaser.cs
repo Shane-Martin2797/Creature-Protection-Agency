@@ -16,7 +16,8 @@ public class Enemy_Chaser : EnemyController
 	public override void Attack ()
 	{
 		Chaser_Attack attack = attackObject.GetComponent<Chaser_Attack> ();
-		if (attack != null) {
+		if (attack != null)
+		{
 			attack.target = GetClosestCreature (PlayerController.Instance.creatureList);
 		}
 		attackObject.SetActive (true);
@@ -31,15 +32,18 @@ public class Enemy_Chaser : EnemyController
 	public override void Movement ()
 	{
 		
-		if (!gotPos) {
+		if (!gotPos)
+		{
 			NavMeshPath path = new NavMeshPath ();
 			Vector3 point = GetMidPoint (PlayerController.Instance.creatureList);
 			int whileLoopBreakIndex = 0;
-			while (path.status != NavMeshPathStatus.PathComplete) {
-				point += new Vector3 (Random.Range (boundsX.x - (distance / 2), boundsX.y + (distance / 2)), 0, Random.Range (boundsZ.x - distance, boundsZ.y + distance));
+			while (path.status != NavMeshPathStatus.PathComplete)
+			{
+				point += new Vector3 (Random.Range (boundsX.x - (distance / 2), (boundsX.y + (distance / 2) + 1)), 0, Random.Range (boundsZ.x - distance, (boundsZ.y + distance) + 1));
 				NavMesh.CalculatePath (transform.position, point, NavMesh.AllAreas, path);
 				whileLoopBreakIndex++;
-				if (whileLoopBreakIndex >= 1000) {
+				if (whileLoopBreakIndex >= 1000)
+				{
 					Debug.LogError ("Change the Bounds to a smaller value, it took 1000 iterations and still didn't find a path (CHASER)");
 					fsm.Transition (EnemyEvents.Enemy_State_Idle);
 					break;
@@ -50,9 +54,12 @@ public class Enemy_Chaser : EnemyController
 		}
 		destination.y = transform.position.y;
 
-		if (Vector3.Distance (transform.position, destination) <= waypointSoftEdge) {
+		if (Vector3.Distance (transform.position, destination) <= waypointSoftEdge)
+		{
 			fsm.Transition (EnemyEvents.Enemy_State_Idle);
-		} else {
+		}
+		else
+		{
 			navAgent.SetDestination (destination);
 		}
 	}
@@ -65,11 +72,14 @@ public class Enemy_Chaser : EnemyController
 		float maxDistance = 0;
 		
 		
-		for (int i = 0; i < gameObjectList.Count; ++i) {
+		for (int i = 0; i < gameObjectList.Count; ++i)
+		{
 			point += gameObjectList [i].transform.position;
-			for (int j = 0; j < gameObjectList.Count; ++j) {
+			for (int j = 0; j < gameObjectList.Count; ++j)
+			{
 				float dist = Vector3.Distance (gameObjectList [i].transform.position, gameObjectList [j].transform.position);
-				if (dist > maxDistance) {
+				if (dist > maxDistance)
+				{
 					maxDistance = dist;
 				}	
 			}
@@ -82,17 +92,21 @@ public class Enemy_Chaser : EnemyController
 	
 	Creature GetClosestCreature (List<Creature> creatures)
 	{
-		if (creatures.Count == 0) {
+		if (creatures.Count == 0)
+		{
 			return null;
 		}
 		float closestDist = float.MaxValue;
 		int closestCreatureIndex = 0;
-		for (int i = 0; i < creatures.Count; ++i) {
-			if (creatures [i] == null) {
+		for (int i = 0; i < creatures.Count; ++i)
+		{
+			if (creatures [i] == null)
+			{
 				continue;
 			}
 			float currDist = Vector3.Distance (transform.position, creatures [i].transform.position);
-			if (currDist < closestDist) {
+			if (currDist < closestDist)
+			{
 				closestDist = currDist;
 				closestCreatureIndex = i;
 			}

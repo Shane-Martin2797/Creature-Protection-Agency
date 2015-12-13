@@ -7,7 +7,8 @@ public class Trap : BaitController
 	
 	void OnCollisionEnter (Collision col)
 	{
-		if (!hitGround && col.gameObject.tag == "Ground") {
+		if (!hitGround && col.gameObject.tag == "Ground")
+		{
 			hitGround = true;
 			
 			PlayerController.activeList.Add (this);
@@ -20,7 +21,8 @@ public class Trap : BaitController
 	
 	void OnTriggerEnter (Collider col)
 	{
-		if (col.gameObject.tag == "Creature") {
+		if (col.gameObject.tag == "Creature")
+		{
 			Activate (col.GetComponent<Creature> ());
 		}
 	}

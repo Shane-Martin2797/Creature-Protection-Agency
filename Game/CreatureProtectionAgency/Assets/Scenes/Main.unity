@@ -1276,48 +1276,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: d027af1092f6b434090f040565e7e656, type: 3}
   m_PrefabInternal: {fileID: 1849114754}
---- !u!1001 &798007123
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: .899999976
-      objectReference: {fileID: 0}
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.0999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 11.1999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 403998, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1024e7705ec36374ab35e280f3f55a7e, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &866025731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,10 +1774,6 @@ Prefab:
       propertyPath: enemiesToSpawn.Array.data[1].positionToSpawn
       value: 
       objectReference: {fileID: 1335629874}
-    - target: {fileID: 11452002, guid: 7c6ba7923b0984bb79f5ff1d41a755eb, type: 2}
-      propertyPath: enemiesToSpawn.Array.data[1].timeToSpawn
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c6ba7923b0984bb79f5ff1d41a755eb, type: 2}
   m_IsPrefabParent: 0

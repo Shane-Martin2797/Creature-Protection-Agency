@@ -25,7 +25,11 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	public int maxBait = 3;
 
 	int curNumBait = 0;
-	
+
+    public List<EnemyController> enemies;
+    private EnemyController closestEnemy;
+    public float aimAssistThreshold = 0;
+
 	protected override void OnSingletonAwake ()
 	{
 		//	Cursor.visible = false;
@@ -36,6 +40,12 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		PointLight ();
 	}
 	
+    void Start ()
+    {
+        enemies.Add(FindObjectOfType<Enemy_Chaser>());
+    }
+
+
 	public float lightAimSpeed;
 	Vector3 lightAimPosition;
 	
@@ -89,13 +99,26 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		Physics.Raycast (ray, out hitInfo);
 
-			throwObject.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
-		if (isBait) {
+		if (isBait) 
+        {
+            throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+
 			throwObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
 
 			throwObject.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
 		}
-		else {
+		else 
+        {
+            FindClosestEnemy(hitInfo.point);
+
+            if (Vector3.Distance(hitInfo.point, closestEnemy.transform.position) <= aimAssistThreshold)
+            {
+                throwObject.GetComponent<RockController>().target = closestEnemy.gameObject;
+            }
+            else
+            {
+                throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+            }
 		}
 	}
 	
@@ -124,4 +147,22 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         return Mathf.Clamp((DateTime.Now - lastDartThrow).Seconds / dartThrowInterval, 0, 1);
     }
 
+    public void FindClosestEnemy (Vector3 _HitPoint)
+    {
+        int closestEnemyIndex = 0;
+        float currentClosestDistance = 9001;
+
+        if (enemies.Count != 0)
+        {
+            for (int index = 0; index < enemies.Count; index++)
+            {
+                if (Vector3.Distance(enemies[index].transform.position, _HitPoint) < currentClosestDistance)
+                {
+                    currentClosestDistance = Vector3.Distance(enemies[index].transform.position, _HitPoint);
+                    closestEnemyIndex = index;
+                }
+            }
+            closestEnemy = enemies[closestEnemyIndex];
+        }
+    }
 }

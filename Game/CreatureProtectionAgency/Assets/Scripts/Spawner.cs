@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
 					EnemyController enemy = Instantiate (enemiesToSpawn [i].enemyToSpawn);
 					enemy.transform.position = enemiesToSpawn [i].positionToSpawn.position;
 					enemiesToSpawn.Remove (enemiesToSpawn [i]);
+                    PlayerController.Instance.enemies.Add(enemy);
 				}
 			}
 		}

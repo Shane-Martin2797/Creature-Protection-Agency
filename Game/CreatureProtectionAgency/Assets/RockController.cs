@@ -4,6 +4,10 @@ using System.Collections;
 public class RockController : ThrowObject
 {
 	public float stunTime = 3.0f;
+    public GameObject target;
+
+    private bool hasTarget;
+    public float moveVelocity = 10;
 
 	void OnCollisionEnter(Collision col)
 	{
@@ -16,12 +20,23 @@ public class RockController : ThrowObject
 		Destroy (this.gameObject);
 	}
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 		transform.Rotate (50, 180, 180);
+
+        if (target != null)
+        {
+            hasTarget = true;
+        }
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+    {
+        if (hasTarget)
+        {
+            transform.LookAt(target.transform);
+            GetComponent<Rigidbody>().velocity = transform.forward * moveVelocity;
+        }
 	}
 }

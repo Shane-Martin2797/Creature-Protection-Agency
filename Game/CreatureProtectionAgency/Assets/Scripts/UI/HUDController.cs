@@ -6,6 +6,10 @@ public class HUDController : MonoBehaviour
 {
     public Text timerText;
     private bool gameNotNull = false;
+    private bool playerNotNull = false;
+
+    public Image baitTimerImage;
+    public Image dartTimerImage;
 
     void Start ()
     {
@@ -13,11 +17,30 @@ public class HUDController : MonoBehaviour
         {
             gameNotNull = true;
         }
+
+        if (PlayerController.Instance != null)
+        {
+            playerNotNull = true;
+        }
     }
 
 	// Update is called once per frame
 	void Update () 
     {
+        if (playerNotNull)
+        {
+            baitTimerImage.fillAmount = PlayerController.Instance.UpdateHUDBait();
+            dartTimerImage.fillAmount = PlayerController.Instance.UpdateHUDDart();
+        }
+        else if (PlayerController.Instance != null)
+        {
+            playerNotNull = true;
+        }
+        else
+        {
+            Debug.LogError("PlayerController not found!!!");
+        }
+
         if(gameNotNull)
         {
             int numSeconds = Mathf.FloorToInt(GameController.Instance.timer % 60);
@@ -27,6 +50,10 @@ public class HUDController : MonoBehaviour
         else if (GameController.Instance != null)
         {
             gameNotNull = true;
+        }
+        else
+        {
+            Debug.LogError("GameController not found!!!");
         }
 	}
 }

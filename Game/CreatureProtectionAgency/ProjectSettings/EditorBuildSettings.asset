@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/HUD.unity
   - enabled: 1
     path: Assets/Scenes/StartingCinematic.unity
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity

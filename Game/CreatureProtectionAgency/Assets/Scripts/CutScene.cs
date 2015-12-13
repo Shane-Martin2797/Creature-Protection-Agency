@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
 public class CutScene : MonoBehaviour {
 
     Image imageComp;
 
     public Image[] images;
     public Image radarSpinner;
-
-    
+	
     public float[] logoTime;
+
+
 
     //float[] initialLogoTime;
 
@@ -27,6 +27,11 @@ public class CutScene : MonoBehaviour {
     Color tempColor;
     void Update()
     {
+		if (Input.GetButtonDown("Cancel"))
+		    {
+			Application.LoadLevel (Scenes.Main);
+			Application.LoadLevelAdditive (Scenes.HUD);
+		}
         /*for (int i = 1; i <= images.Length; i++)
         {
             tempColor.a = Mathf.Sin(logoTime[i] / 0 * Mathf.PI);
@@ -43,6 +48,7 @@ public class CutScene : MonoBehaviour {
             images[1].gameObject.SetActive(true);
             radarSpinner.gameObject.SetActive(true);
             logoTime[1] -= Time.deltaTime;
+
         }
 
         if (logoTime[1] < 0)
@@ -88,8 +94,8 @@ public class CutScene : MonoBehaviour {
 
         if (logoTime[6] < 0)
         {
-            Debug.Log("Change Scene");
-            Application.LoadLevel("Main");
+			Application.LoadLevel (Scenes.Main);
+			Application.LoadLevelAdditive (Scenes.HUD);
         }
     }
 }

@@ -10,21 +10,25 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	public Light lightObject;
 	
 	public Bait baitPrefab;
-	public RockController rockPrefab;
+	public RockController dartPrefab;
 
 	public float baitThrowTimeInterval;
 
-	public float rockThrowInterval;
+	public float dartThrowInterval;
 
 	DateTime lastBaitThrow;
-	DateTime lastRockThrow;
+	DateTime lastDartThrow;
 
 	public float timeForBaitToHitGround;
 
 	public int maxBait = 3;
 
 	int curNumBait = 0;
-	
+
+    public List<EnemyController> enemies;
+    private EnemyController closestEnemy;
+    public float aimAssistThreshold = 0;
+
 	protected override void OnSingletonAwake ()
 	{
 		//	Cursor.visible = false;
@@ -34,6 +38,12 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		PointLight ();
 	}
 	
+    void Start ()
+    {
+        enemies.Add(FindObjectOfType<Enemy_Chaser>());
+    }
+
+
 	public float lightAimSpeed;
 	Vector3 lightAimPosition;
 	
@@ -61,10 +71,10 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 			lastBaitThrow = DateTime.Now;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Mouse1) && (lastRockThrow == null || (DateTime.Now - lastRockThrow).Seconds >= rockThrowInterval)) {
+		if (Input.GetKeyDown (KeyCode.Mouse1) && (lastDartThrow == null || (DateTime.Now - lastDartThrow).Seconds >= dartThrowInterval)) {
 			ThrowBait (false);
 			
-			lastRockThrow = DateTime.Now;
+			lastDartThrow = DateTime.Now;
 		}
 
 		PointLight ();
@@ -80,20 +90,33 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		} 
 		else 
 		{
-			throwObject = Instantiate (rockPrefab, transform.position, Quaternion.identity) as RockController;
+			throwObject = Instantiate (dartPrefab, transform.position, Quaternion.identity) as RockController;
 		}
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hitInfo;
 
 		Physics.Raycast (ray, out hitInfo);
 
-			throwObject.GetComponent<Rigidbody> ().velocity = CalculateTrajectory (transform.position, hitInfo.point);
-		if (isBait) {
+		if (isBait) 
+        {
+            throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+
 			throwObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
 
 			throwObject.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
 		}
-		else {
+		else 
+        {
+            FindClosestEnemy(hitInfo.point);
+
+            if (Vector3.Distance(hitInfo.point, closestEnemy.transform.position) <= aimAssistThreshold)
+            {
+                throwObject.GetComponent<RockController>().target = closestEnemy.gameObject;
+            }
+            else
+            {
+                throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+            }
 		}
 	}
 	
@@ -109,4 +132,35 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
 		return diff;
 	}
+
+    public float UpdateHUDBait ()
+    {
+        //(DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval
+        return Mathf.Clamp(((DateTime.Now - lastBaitThrow).Seconds / baitThrowTimeInterval) + ((DateTime.Now - lastBaitThrow).Milliseconds / baitThrowTimeInterval)/1000, 0, 1);
+    }
+
+    public float UpdateHUDDart()
+    {
+        //(DateTime.Now - lastBaitThrow).Seconds >= baitThrowTimeInterval
+        return Mathf.Clamp(((DateTime.Now - lastDartThrow).Seconds / dartThrowInterval) + ((DateTime.Now - lastDartThrow).Milliseconds / dartThrowInterval)/1000, 0, 1);
+    }
+
+    public void FindClosestEnemy (Vector3 _HitPoint)
+    {
+        int closestEnemyIndex = 0;
+        float currentClosestDistance = 9001;
+
+        if (enemies.Count != 0)
+        {
+            for (int index = 0; index < enemies.Count; index++)
+            {
+                if (Vector3.Distance(enemies[index].transform.position, _HitPoint) < currentClosestDistance)
+                {
+                    currentClosestDistance = Vector3.Distance(enemies[index].transform.position, _HitPoint);
+                    closestEnemyIndex = index;
+                }
+            }
+            closestEnemy = enemies[closestEnemyIndex];
+        }
+    }
 }

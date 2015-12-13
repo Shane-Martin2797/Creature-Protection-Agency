@@ -106,6 +106,7 @@ public abstract class EnemyController : MonoBehaviour
 				Target ();
 			} else {
 				LookAt (targetCreature.gameObject);
+				CheckForStillHasSight ();
 			}
 			if (cooldownTimer > 0) {
 				cooldownTimer -= Time.deltaTime;
@@ -212,5 +213,17 @@ public abstract class EnemyController : MonoBehaviour
 		
 		//This sets our angle to facing the creature.
 		transform.localEulerAngles = new Vector3 (0, angleValue, 0);
+	}
+	
+	void CheckForStillHasSight ()
+	{
+		RaycastHit hit;
+		Physics.Raycast (attackObjectSpawnPoint.position, (targetCreature.transform.position - transform.position).normalized, out hit, visionDistance);
+		
+		if (hit.collider.gameObject == targetCreature.gameObject) {
+			return;
+		}
+		//Set our target to the creature we are currently checking
+		targetCreature = null;
 	}
 }

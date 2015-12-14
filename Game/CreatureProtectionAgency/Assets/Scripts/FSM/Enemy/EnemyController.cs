@@ -220,7 +220,8 @@ public abstract class EnemyController : MonoBehaviour
 		RaycastHit hit;
 		Physics.Raycast (attackObjectSpawnPoint.position, (targetCreature.transform.position - transform.position).normalized, out hit, visionDistance);
 		
-		if (hit.collider.gameObject == targetCreature.gameObject) {
+		if (targetCreature != null && hit.collider != null && hit.collider.gameObject == targetCreature.gameObject) 
+        {
 			return;
 		}
 		//Set our target to the creature we are currently checking

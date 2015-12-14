@@ -103,35 +103,42 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hitInfo;
 
-		Physics.Raycast (ray, out hitInfo);
-
-		if (isBait) 
+        if (Physics.Raycast(ray, out hitInfo))
         {
-            throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+            Debug.Log(hitInfo.collider);
 
-			throwObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
-
-			throwObject.GetComponent<Rigidbody> ().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range (0.0f, 1.0f);
-		}
-		else 
-        {
-            FindClosestEnemy(hitInfo.point);
-
-            if (Vector3.Distance(hitInfo.point, closestEnemy.transform.position) <= aimAssistThreshold)
+            if (isBait)
             {
-                throwObject.GetComponent<RockController>().target = closestEnemy.gameObject;
+                throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+
+                throwObject.GetComponent<Rigidbody>().angularVelocity = Vector3.right * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
+
+                throwObject.GetComponent<Rigidbody>().angularVelocity += Vector3.forward * -40.0f * UnityEngine.Random.Range(0.0f, 1.0f);
             }
             else
             {
-                throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+                FindClosestEnemy(hitInfo.point);
+
+                if (Vector3.Distance(hitInfo.point, closestEnemy.transform.position) <= aimAssistThreshold)
+                {
+                    throwObject.GetComponent<RockController>().target = closestEnemy.gameObject;
+                }
+                else
+                {
+                    throwObject.GetComponent<Rigidbody>().velocity = CalculateTrajectory(transform.position, hitInfo.point);
+                }
             }
-		}
+        }
+        else
+        {
+            Destroy(throwObject.gameObject);
+        }
 	}
 	
 	Vector3 CalculateTrajectory (Vector3 origin, Vector3 destination)
 	{
 		Vector3 diff = destination - origin;
-
+  //      Debug.Log(destination);
 		float initialVerticalVelocity = (destination.y + -Physics.gravity.y * 0.5f * Mathf.Pow (timeForBaitToHitGround, 2) - origin.y) / timeForBaitToHitGround;
 
 		diff /= timeForBaitToHitGround;

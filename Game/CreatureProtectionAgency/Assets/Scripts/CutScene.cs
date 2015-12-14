@@ -43,7 +43,7 @@ public class CutScene : MonoBehaviour {
 
         if (logoTime[0] < 0)
         {
-            Debug.Log("Image2");
+  //          Debug.Log("Image2");
             images[0].gameObject.SetActive(false);
             images[1].gameObject.SetActive(true);
             radarSpinner.gameObject.SetActive(true);
@@ -53,7 +53,7 @@ public class CutScene : MonoBehaviour {
 
         if (logoTime[1] < 0)
         {
-            Debug.Log("Image3");
+  //          Debug.Log("Image3");
             radarSpinner.gameObject.SetActive(false);
             images[1].gameObject.SetActive(false);
             images[2].gameObject.SetActive(true);
@@ -62,7 +62,7 @@ public class CutScene : MonoBehaviour {
 
         if (logoTime[2] < 0)
         {
-            Debug.Log("Image4");
+     //       Debug.Log("Image4");
             images[2].gameObject.SetActive(false);
             images[3].gameObject.SetActive(true);
             logoTime[3] -= Time.deltaTime;
@@ -70,7 +70,7 @@ public class CutScene : MonoBehaviour {
 
         if (logoTime[3] < 0)
         {
-            Debug.Log("Image5");
+    //        Debug.Log("Image5");
             images[3].gameObject.SetActive(false);
             images[4].gameObject.SetActive(true);
             logoTime[4] -= Time.deltaTime;
@@ -78,7 +78,7 @@ public class CutScene : MonoBehaviour {
 
         if (logoTime[4] < 0)
         {
-            Debug.Log("Image6");
+    //        Debug.Log("Image6");
             images[4].gameObject.SetActive(false);
             images[5].gameObject.SetActive(true);
             logoTime[5] -= Time.deltaTime;
@@ -86,7 +86,7 @@ public class CutScene : MonoBehaviour {
 
         if (logoTime[5] < 0)
         {
-            Debug.Log("Image7");
+  //          Debug.Log("Image7");
             images[5].gameObject.SetActive(false);
             images[6].gameObject.SetActive(true);
             logoTime[6] -= Time.deltaTime;

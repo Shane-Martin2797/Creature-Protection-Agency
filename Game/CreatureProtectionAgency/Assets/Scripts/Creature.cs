@@ -83,7 +83,7 @@ public class Creature : MonoBehaviour
     void SetState()
     {
         anim.SetInteger("State", (int)curState);
-        Debug.Log((int)curState);
+   //     Debug.Log((int)curState);
     }
 
     public void Stun(float _stunTime)

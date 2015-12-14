@@ -22,6 +22,11 @@ public class HUDController : MonoBehaviour
         {
             playerNotNull = true;
         }
+        if(PlayerController.Instance.dartPrefab == null)
+        {
+            dartTimerImage.gameObject.SetActive(false);
+            timerText.transform.parent.gameObject.SetActive(false);
+        }
     }
 
 	// Update is called once per frame

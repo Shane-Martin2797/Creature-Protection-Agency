@@ -10,9 +10,7 @@ public class Trap : BaitController
 		if (!hitGround && col.gameObject.tag == "Ground")
 		{
 			hitGround = true;
-			
-			PlayerController.activeList.Add (this);
-			
+						
 			Destroy (GetComponent<Rigidbody> ());
 			
 			transform.eulerAngles = Vector3.up * -90;

@@ -13,7 +13,7 @@ public abstract class BaitController : ThrowObject
 	
 	public static event BaitEaten UpdateBait;	
 
-	bool hitGround = false;
+	protected bool hitGround = false;
 
     List<Creature> creatureList;
 
@@ -85,10 +85,18 @@ public abstract class BaitController : ThrowObject
 	{
 		UpdateBait ();
 
+        
         foreach (Creature creature in creatureList)
         {
             if(creature != null)
                 creature.RemoveBait(this);
         }
+
+        ChildClassDestroy();
 	}
+
+    protected virtual void ChildClassDestroy ()
+    {
+
+    }
 }

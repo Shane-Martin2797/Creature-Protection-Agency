@@ -42,11 +42,21 @@ public class Bait : BaitController
         lifeTimeSlider.position = transform.position + Vector3.up * 0.85f;
         lifeTimeSlider.rotation = Quaternion.identity;
         lifeTimeSlider.localScale = new Vector3(lifeTime * sliderSize / initialLifeTime, lifeTimeSlider.localScale.y, lifeTimeSlider.localScale.z);
+     
         if (transform.position.y < -1 || lifeTime < 0) 
 		{
 			Destroy(this.gameObject);
 		}
 	}
+
+    
+    protected override void ChildClassDestroy ()
+    {
+        if (lifeTimeSlider != null)
+        {
+            Destroy(lifeTimeSlider.gameObject);
+        }
+    }
 
 	float colourMag = 1.0f;
 

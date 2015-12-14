@@ -377,7 +377,211 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 108
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Final Male Model
+        weight: 1
+      - path: Panther_A_A
+        weight: 1
+      - path: PantherLLegPlatform_A
+        weight: 1
+      - path: PantherLLegPlatform_A 1
+        weight: 1
+      - path: PantherPelvis_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit01_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit01_A/PantherLLegDigit02_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit11_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit11_A/PantherLLegDigit12_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit21_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit21_A/PantherLLegDigit22_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit31_A
+        weight: 1
+      - path: PantherPelvis_A/PantherLLeg1_A/PantherLLeg2_A/PantherLLegPalm_A/PantherLLegDigit31_A/PantherLLegDigit32_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit01_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit01_A/PantherRLegDigit02_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit11_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit11_A/PantherRLegDigit12_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit21_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit21_A/PantherRLegDigit22_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit31_A
+        weight: 1
+      - path: PantherPelvis_A/PantherRLeg1_A/PantherRLeg2_A/PantherRLegPalm_A/PantherRLegDigit31_A/PantherRLegDigit32_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit01_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit01_A 1/PantherLLegDigit02_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit11_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit11_A 1/PantherLLegDigit12_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit21_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit21_A 1/PantherLLegDigit22_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit31_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherLLegCollarbone_A/PantherLLeg1_A
+          1/PantherLLeg2_A 1/PantherLLegPalm_A 1/PantherLLegDigit31_A 1/PantherLLegDigit32_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherNeck1_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherNeck1_A/PantherNeck2_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherNeck1_A/PantherNeck2_A/PantherNeck3_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherNeck1_A/PantherNeck2_A/PantherNeck3_A/PantherNeck4_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherNeck1_A/PantherNeck2_A/PantherNeck3_A/PantherNeck4_A/PantherNeck5_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherNeck1_A/PantherNeck2_A/PantherNeck3_A/PantherNeck4_A/PantherNeck5_A/PantherHead_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit01_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit01_A 1/PantherRLegDigit02_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit11_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit11_A 1/PantherRLegDigit12_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit21_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit21_A 1/PantherRLegDigit22_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit31_A 1
+        weight: 1
+      - path: PantherPelvis_A/PantherSpine1_A/PantherSpine2_A/PantherSpine3_A/PantherSpine4_A/PantherSpine5_A/PantherSpine6_A/PantherRibcage_A/PantherRLegShoulderblade_A/PantherRLeg1_A
+          1/PantherRLeg2_A 1/PantherRLegPalm_A 1/PantherRLegDigit31_A 1/PantherRLegDigit32_A
+          1
+        weight: 1
+      - path: PantherPelvis_A/PantherTail1_A
+        weight: 1
+      - path: PantherPelvis_A/PantherTail1_A/PantherTail2_A
+        weight: 1
+      - path: PantherPelvis_A/PantherTail1_A/PantherTail2_A/PantherTail3_A
+        weight: 1
+      - path: PantherPelvis_A/PantherTail1_A/PantherTail2_A/PantherTail3_A/PantherTail4_A
+        weight: 1
+      - path: PantherPelvis_A/PantherTail1_A/PantherTail2_A/PantherTail3_A/PantherTail4_A/PantherTail5_A
+        weight: 1
+      - path: PantherPelvis_A/PantherTail1_A/PantherTail2_A/PantherTail3_A/PantherTail4_A/PantherTail5_A/PantherTail6_A
+        weight: 1
+      - path: PantherPelvis_A/PantherTail1_A/PantherTail2_A/PantherTail3_A/PantherTail4_A/PantherTail5_A/PantherTail6_A/PantherTail7_A
+        weight: 1
+      - path: PantherRLegPlatform_A
+        weight: 1
+      - path: PantherRLegPlatform_A 1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

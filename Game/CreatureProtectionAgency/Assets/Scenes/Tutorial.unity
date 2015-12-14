@@ -37,6 +37,9 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+--- !u!127 &3
+LevelGameManager:
+  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -65,7 +68,6 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
-    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -356,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &138484432
 Light:
   m_ObjectHideFlags: 0
@@ -400,7 +402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!4 &138702291 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: d027af1092f6b434090f040565e7e656, type: 3}
@@ -519,7 +521,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -685,8 +686,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 208994511}
-  m_LocalRotation: {x: -.0482448414, y: .951664567, z: .221132308, w: .207623407}
-  m_LocalPosition: {x: -1.90476942, y: -8.76640034, z: 7.46201658}
+  m_LocalRotation: {x: 1.2367768e-07, y: .898793995, z: .438371271, w: -2.53576729e-07}
+  m_LocalPosition: {x: -.344884068, y: -6.93600178, z: 3.57146549}
   m_LocalScale: {x: .38320449, y: .38320446, z: .38320449}
   m_Children: []
   m_Father: {fileID: 1606728509}
@@ -1110,7 +1111,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 602742242}
   m_LocalRotation: {x: 1.2367768e-07, y: .898793995, z: .438371271, w: -2.53576729e-07}
-  m_LocalPosition: {x: -.344884068, y: -11.5574465, z: 13.1822338}
+  m_LocalPosition: {x: -.344884068, y: -6.93600178, z: 3.57146549}
   m_LocalScale: {x: .38320452, y: .38320446, z: .38320452}
   m_Children: []
   m_Father: {fileID: 1606728509}
@@ -2413,6 +2414,45 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400016, guid: 469edab27ab6d004d84af2c4a851bd7f, type: 3}
   m_PrefabInternal: {fileID: 397273020}
+--- !u!1 &1575924883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1575924885}
+  - 114: {fileID: 1575924884}
+  m_Layer: 0
+  m_Name: Bring in hud
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1575924884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1575924883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7169f39219d59394cae75b61678662f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1575924885
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1575924883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .125405788, y: 40.5890656, z: 44.2732925}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1001 &1585745224
 Prefab:
   m_ObjectHideFlags: 0
@@ -2901,11 +2941,13 @@ MonoBehaviour:
   creatureList: []
   lightObject: {fileID: 866025732}
   baitPrefab: {fileID: 11416744, guid: 0192f118b51954c41a48b92995f5c5a5, type: 2}
-  rockPrefab: {fileID: 11422794, guid: 2526604278e17fd40a8f555f1fb2223e, type: 2}
+  dartPrefab: {fileID: 0}
   baitThrowTimeInterval: 1.5
-  rockThrowInterval: 10
+  dartThrowInterval: 0
   timeForBaitToHitGround: 1
   maxBait: 3
+  enemies: []
+  aimAssistThreshold: 0
   lightAimSpeed: 7
 --- !u!82 &1934408749
 AudioSource:
@@ -2922,7 +2964,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1

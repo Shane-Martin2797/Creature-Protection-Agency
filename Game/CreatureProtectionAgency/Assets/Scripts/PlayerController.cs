@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class PlayerController : SingletonBehaviour<PlayerController>
 {
-	public static List<BaitController> activeList;
 	public List<Creature> creatureList = new List<Creature> ();
 
 	public Light lightObject;
@@ -34,7 +33,6 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	{
 		//	Cursor.visible = false;
 		Bait.UpdateBait += UpdateBait;
-		activeList = new List<BaitController> ();
 
 		//make the light point at the mouse position
 		PointLight ();
@@ -87,11 +85,19 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	{
 		ThrowObject throwObject;
 		if (isBait) {
+            if (baitPrefab == null)
+            {
+                return;
+            }
 			throwObject = Instantiate (baitPrefab, transform.position, Quaternion.identity) as BaitController;
 			curNumBait++;
 		} 
 		else 
 		{
+            if(dartPrefab == null)
+            {
+                return;
+            }
 			throwObject = Instantiate (dartPrefab, transform.position, Quaternion.identity) as RockController;
 		}
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -165,4 +171,5 @@ public class PlayerController : SingletonBehaviour<PlayerController>
             closestEnemy = enemies[closestEnemyIndex];
         }
     }
+
 }

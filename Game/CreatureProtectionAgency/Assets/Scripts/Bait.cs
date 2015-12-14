@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Bait : BaitController 
 {
@@ -9,9 +10,16 @@ public class Bait : BaitController
 	public float foodPoints;
 	float initialFoodPoints;
 
+    float lifeTime = 3;
+    float initialLifeTime;
+
 	Material _material;
 
 	Color initialColour;
+
+    public Transform lifeTimeSlider;
+
+    float sliderSize;
 
 	void Start ()
 	{
@@ -20,15 +28,35 @@ public class Bait : BaitController
 		_material = GetComponent<Renderer> ().material;
 
 		initialColour = _material.color;
+
+        initialLifeTime = lifeTime;
+
+        lifeTimeSlider.transform.SetParent(null);
+
+        sliderSize = lifeTimeSlider.transform.localScale.x;
 	}
 
 	void Update () 
 	{
-		if (transform.position.y < -1) 
+        lifeTime -= Time.deltaTime;
+        lifeTimeSlider.position = transform.position + Vector3.up * 0.85f;
+        lifeTimeSlider.rotation = Quaternion.identity;
+        lifeTimeSlider.localScale = new Vector3(lifeTime * sliderSize / initialLifeTime, lifeTimeSlider.localScale.y, lifeTimeSlider.localScale.z);
+     
+        if (transform.position.y < -1 || lifeTime < 0) 
 		{
 			Destroy(this.gameObject);
 		}
 	}
+
+    
+    protected override void ChildClassDestroy ()
+    {
+        if (lifeTimeSlider != null)
+        {
+            Destroy(lifeTimeSlider.gameObject);
+        }
+    }
 
 	float colourMag = 1.0f;
 

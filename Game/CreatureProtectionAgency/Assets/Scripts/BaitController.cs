@@ -4,18 +4,30 @@ using System.Collections.Generic;
 public abstract class BaitController : ThrowObject
 {
 	public delegate void BaitEaten ();
+
+    public SphereCollider collider;
+
+    public float radiusOfEffect = 15;
+
+    float sizeMultiplier;
 	
 	public static event BaitEaten UpdateBait;	
 
+	protected bool hitGround = false;
 
-	public bool hitGround { get; set; }
+    List<Creature> creatureList;
 
 	void Awake ()
 	{
-		hitGround = false;
-		if (PlayerController.activeList == null) {
-			PlayerController.activeList = new List<BaitController> ();
-		}
+        creatureList = new List<Creature>();
+        collider = gameObject.AddComponent<SphereCollider>();
+        collider.isTrigger = true;
+        sizeMultiplier = 1;
+        if(GetComponent<Trap>() != null)
+        {
+            sizeMultiplier = 0.5f;
+        }
+        UpdateAOE();
 	}
 
 	public virtual void Eat ()
@@ -23,28 +35,68 @@ public abstract class BaitController : ThrowObject
 
 	}
 
-	void OnCollisionEnter (Collision col)
+    protected void UpdateAOE ()
+    {
+        collider.radius = sizeMultiplier * radiusOfEffect / transform.localScale.magnitude;
+
+        //update the visual
+    }
+
+	void OnCollisionEnter (Collision col) 
 	{
-		if (!hitGround && col.gameObject.tag == "Ground") {
+		if (!hitGround && col.gameObject.tag == "Ground") 
+		{
 			hitGround = true;
 
-			PlayerController.activeList.Add (this);
-
-			Destroy (GetComponent<Rigidbody> ());
+			Destroy(GetComponent<Rigidbody>());
 
 			transform.eulerAngles = Vector3.forward * -90;
 		}
 	}
 
-	void OnDestroy ()
+    void OnTriggerEnter(Collider col)
+    {
+        Creature creature = col.gameObject.GetComponent<Creature>();
+        if (creature != null)
+        {
+            creatureList.Add(creature);
+
+            creature.AddBait(this);
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        Creature creature = col.gameObject.GetComponent<Creature>();
+        if (creature != null)
+        {
+            creatureList.Remove(creature);
+
+            creature.RemoveBait(this);
+        }
+    }
+
+    public void CreatureDeath (Creature instance)
+    {
+           creatureList.Remove(instance);
+    }
+
+	void OnDestroy () 
 	{
 		UpdateBait ();
-		
-		RemoveFromList ();
+
+        
+        foreach (Creature creature in creatureList)
+        {
+            if(creature != null)
+                creature.RemoveBait(this);
+        }
+
+        ChildClassDestroy();
 	}
 
-	protected void RemoveFromList ()
-	{
-		PlayerController.activeList.Remove (this);
-	}
+    protected virtual void ChildClassDestroy ()
+    {
+
+    }
 }

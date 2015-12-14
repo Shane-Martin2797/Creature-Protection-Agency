@@ -5,6 +5,17 @@ using System.Collections.Generic;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Creature : MonoBehaviour
 {
+    enum State
+    {
+        idle,
+        walking,
+        eating
+    }
+
+    State curState = State.idle;
+
+    public Animator anim;
+
     List<BaitController> listOfBait;
 
     public float moveSpeed;
@@ -69,8 +80,15 @@ public class Creature : MonoBehaviour
         FindClosestPath();
     }
 
+    void SetState()
+    {
+        anim.SetInteger("State", (int)curState);
+        Debug.Log((int)curState);
+    }
+
     public void Stun(float _stunTime)
     {
+
         stunParticles.SetActive(true);
 
         //apply the stun time
@@ -95,7 +113,7 @@ public class Creature : MonoBehaviour
         float angle = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
         if (gameObject.name == "Creature")
         {
-            Debug.Log(angle);
+       //     Debug.Log(angle);
             //     Debug.Log(dotProduct);
         }
         //check if the angle is less than the angle the light shines at
@@ -144,8 +162,19 @@ public class Creature : MonoBehaviour
         }
     }
 
+    Vector3 lastPosition = new Vector3(0,0,0);
+
     void Update()
     {
+        if (lastPosition != transform.position)
+        {
+            curState = State.walking;
+        }
+        else
+        {
+            curState = State.idle;
+        }
+        lastPosition = transform.position;
         if (idleTimerCounter <= 0)
         {
             FindRoamingPosition();
@@ -160,9 +189,15 @@ public class Creature : MonoBehaviour
 
                 idleTimerCounter = idleTimer;
 
-                if ((target.transform.position - transform.position).magnitude < 3.0f)
+                if ((target.transform.position - transform.position).magnitude < 1.5f)
                 {
                     target.Eat();
+                    curState = State.eating;
+                    navigator.Stop();
+                }
+                else
+                {
+                    navigator.Resume();
                 }
             }
 
@@ -185,6 +220,8 @@ public class Creature : MonoBehaviour
             }
         }
         IsBeingLit(PlayerController.Instance.lightObject);
+
+        SetState();
     }
 
     void FindClosestPath()

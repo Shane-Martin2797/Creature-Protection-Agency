@@ -10,7 +10,7 @@ public class Bait : BaitController
 	public float foodPoints;
 	float initialFoodPoints;
 
-    float lifeTime = 3;
+  public  float lifeTime = 3;
     float initialLifeTime;
 
 	Material _material;

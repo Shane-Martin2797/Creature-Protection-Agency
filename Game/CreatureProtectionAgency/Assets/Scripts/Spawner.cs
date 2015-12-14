@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
+	public AudioClip newPoacher;
+	public AudioSource audiohere;
 	[System.Serializable]
 	public class EnemySpawner
 	{
@@ -25,6 +27,8 @@ public class Spawner : MonoBehaviour
 					enemy.transform.position = enemiesToSpawn [i].positionToSpawn.position;
 					enemiesToSpawn.Remove (enemiesToSpawn [i]);
                     PlayerController.Instance.enemies.Add(enemy);
+					audiohere.Play();
+				
 				}
 			}
 		}

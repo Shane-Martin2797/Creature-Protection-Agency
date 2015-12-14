@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad2786774b22c8448da0b7f71c7af69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunTime: 2.5
+  stunTime: 2
   target: {fileID: 0}
   moveVelocity: 40
 --- !u!135 &13558314
@@ -186,7 +186,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: stunTime
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: moveVelocity

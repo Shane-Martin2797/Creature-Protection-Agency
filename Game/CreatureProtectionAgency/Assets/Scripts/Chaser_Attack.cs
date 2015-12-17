@@ -6,6 +6,7 @@ public class Chaser_Attack : MonoBehaviour
 	public float lifetimeOfAttack = .2f;
 	float timer;
 	public Creature target;
+    public GameObject cagePrefab;
 	
 	void OnTriggerEnter (Collider col)
 	{
@@ -19,7 +20,10 @@ public class Chaser_Attack : MonoBehaviour
 			//Kills the creature
 			if (target != null) {
 				if (creature == target) {
-					Destroy (creature.gameObject);
+					Destroy (gameObj.GetComponent<Creature>());
+                    Destroy(gameObj.GetComponent<NavMeshAgent>());
+                    gameObj.GetComponent<Rigidbody>().isKinematic = true;
+                    Instantiate(cagePrefab, gameObj.transform.position, gameObj.transform.rotation);
 					target = null;
 				}
 			}

@@ -35,7 +35,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 		Bait.UpdateBait += UpdateBait;
 
 		//make the light point at the mouse position
-		PointLight ();
+//		PointLight ();
 	}
 	
     void Start ()
@@ -47,16 +47,16 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 	public float lightAimSpeed;
 	Vector3 lightAimPosition;
 	
-	void PointLight ()
-	{
-		//lerp between the last position and this position
-		lightAimPosition = lightObject.transform.position + Camera.main.ScreenPointToRay(Input.mousePosition).direction;
-		
-
-		Vector3 curAim = Vector3.Lerp (lightObject.transform.position + lightObject.transform.forward, lightAimPosition, lightAimSpeed/(lightAimPosition - transform.forward).magnitude);
-		lightObject.transform.LookAt(curAim);
-
-	}
+//	void PointLight ()
+//	{
+//		//lerp between the last position and this position
+//		lightAimPosition = lightObject.transform.position + Camera.main.ScreenPointToRay(Input.mousePosition).direction;
+//		
+//
+//		Vector3 curAim = Vector3.Lerp (lightObject.transform.position + lightObject.transform.forward, lightAimPosition, lightAimSpeed/(lightAimPosition - transform.forward).magnitude);
+//		lightObject.transform.LookAt(curAim);
+//
+//	}
 
 	void UpdateBait ()
 	{
@@ -77,7 +77,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 			lastDartThrow = DateTime.Now;
 		}
 
-		PointLight ();
+//		PointLight ();
 	}
 
 

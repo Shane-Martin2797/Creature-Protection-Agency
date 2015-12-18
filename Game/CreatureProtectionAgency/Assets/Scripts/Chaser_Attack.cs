@@ -7,7 +7,13 @@ public class Chaser_Attack : MonoBehaviour
 	float timer;
 	public Creature target;
     public GameObject cagePrefab;
+    private HUDController hudInstance;
 	
+    void Start ()
+    {
+        hudInstance = FindObjectOfType<HUDController>();
+    }
+
 	void OnTriggerEnter (Collider col)
 	{
 		Notify (col.gameObject);
@@ -24,6 +30,9 @@ public class Chaser_Attack : MonoBehaviour
                     Destroy(gameObj.GetComponent<NavMeshAgent>());
                     gameObj.GetComponent<Rigidbody>().isKinematic = true;
                     Instantiate(cagePrefab, gameObj.transform.position, gameObj.transform.rotation);
+
+                    hudInstance.UpdateHUDTigers();
+
 					target = null;
 				}
 			}

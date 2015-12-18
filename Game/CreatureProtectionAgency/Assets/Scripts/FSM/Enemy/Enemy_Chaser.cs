@@ -42,9 +42,10 @@ public class Enemy_Chaser : EnemyController
 				point += new Vector3 (Random.Range (boundsX.x - (distance / 2), (boundsX.y + (distance / 2) + 1)), 0, Random.Range (boundsZ.x - distance, (boundsZ.y + distance) + 1));
 				NavMesh.CalculatePath (transform.position, point, NavMesh.AllAreas, path);
 				whileLoopBreakIndex++;
-				if (whileLoopBreakIndex >= 1000)
+				if (whileLoopBreakIndex >= 10000)
 				{
-					Debug.LogError ("Change the Bounds to a smaller value, it took 1000 iterations and still didn't find a path (CHASER)");
+					Debug.LogError ("Change the Bounds to a smaller value, it took 10000 iterations and still didn't find a path (CHASER)");
+					point = PlayerController.Instance.creatureList [Random.Range (0, PlayerController.Instance.creatureList.Count)].transform.position;
 					fsm.Transition (EnemyEvents.Enemy_State_Idle);
 					break;
 				}
